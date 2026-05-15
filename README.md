@@ -10,6 +10,8 @@ This repository is currently organized as a Jupyter Notebook based analysis proj
 
 Dataset source: Kaggle Ultimate Games Dataset.
 
+dataset: https://www.kaggle.com/datasets/rudrakumargupta/ultimate-games-dataset-15k-games-43-features/data
+
 Place the raw CSV file at:
 
 ```bash
