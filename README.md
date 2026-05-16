@@ -20,7 +20,12 @@ data/raw/Ultimate_Games_Dataset.csv
 
 If the raw data file is too large for GitHub, keep only the Kaggle source link in the project documentation and do not upload the original CSV.
 
-## Current Notebook
+## Notebooks
+
+Current progress:
+
+- `notebooks/01_initial_eda.ipynb`: initial data exploration, basic quality checks, light preprocessing, basic feature engineering, and first-round visualizations.
+- `notebooks/02_deeper_analysis.ipynb`: deeper analysis of genres, platforms, release years, tags, text-derived features, numeric correlations, and saved feature data.
 
 `notebooks/01_initial_eda.ipynb` includes:
 
@@ -31,7 +36,17 @@ If the raw data file is too large for GitHub, keep only the Kaggle source link i
 - Gentle preprocessing for dates, numeric fields, and multi-label columns
 - Basic feature engineering for genre count, platform count, tag count, description length, release decade, and recent-game flags
 - Initial visualizations saved to `figures/`
-- Placeholder preliminary findings to be completed after running the notebook
+- Preliminary findings based on the executed notebook outputs
+
+`notebooks/02_deeper_analysis.ipynb` includes:
+
+- Multi-label processing for genres, platforms, and tags
+- Genre-level rating, popularity, and engagement analysis
+- Single-platform vs multi-platform comparison
+- Release year and release decade trend analysis
+- Tag count and description length analysis
+- Numeric feature correlation analysis
+- Feature dataset export to `data/processed/Ultimate_Games_Dataset_features.csv`
 
 ## Project Structure
 
@@ -89,4 +104,5 @@ Then open:
 
 ```text
 notebooks/01_initial_eda.ipynb
+notebooks/02_deeper_analysis.ipynb
 ```
