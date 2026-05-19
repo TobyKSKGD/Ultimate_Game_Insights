@@ -1,0 +1,12 @@
+metric,value
+total_games,89618.0
+games_with_reviews,72563.0
+games_with_30plus_reviews,33358.0
+games_with_peak_ccu,18920.0
+games_with_playtime,8010.0
+median_review_count,13.0
+mean_review_count,1479.6985315450022
+median_positive_rate_for_30plus_reviews,81.08108108108108
+median_recommendations,0.0
+median_peak_ccu,0.0
+median_average_playtime_minutes,0.0

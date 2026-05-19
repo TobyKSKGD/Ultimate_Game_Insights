@@ -1,0 +1,25 @@
+check,issue,affected_rows,note,missing_ratio
+identifier,missing appid,0,,
+identifier,duplicate appid,0,,
+duplicates,duplicate full rows,0,,
+missing_key_feature,appid,0,missing ratio recorded,0.0
+missing_key_feature,name,0,missing ratio recorded,0.0
+missing_key_feature,release_date,0,missing ratio recorded,0.0
+missing_key_feature,release_year,0,missing ratio recorded,0.0
+missing_key_feature,price,0,missing ratio recorded,0.0
+missing_key_feature,is_free,0,missing ratio recorded,0.0
+missing_key_feature,platform_count,0,missing ratio recorded,0.0
+missing_key_feature,genres_count,0,missing ratio recorded,0.0
+missing_key_feature,categories_count,0,missing ratio recorded,0.0
+missing_key_feature,tags_count,0,missing ratio recorded,0.0
+missing_key_feature,developers_count,0,missing ratio recorded,0.0
+missing_key_feature,publishers_count,0,missing ratio recorded,0.0
+missing_key_feature,positive,0,missing ratio recorded,0.0
+missing_key_feature,negative,0,missing ratio recorded,0.0
+missing_key_feature,review_count_calc,0,missing ratio recorded,0.0
+missing_key_feature,positive_rate_calc,17055,missing ratio recorded,19.03
+missing_key_feature,recommendations,0,missing ratio recorded,0.0
+missing_key_feature,peak_ccu,0,missing ratio recorded,0.0
+missing_key_feature,average_playtime_forever,0,missing ratio recorded,0.0
+missing_key_feature,short_description_length,0,missing ratio recorded,0.0
+missing_key_feature,about_the_game_length,0,missing ratio recorded,0.0

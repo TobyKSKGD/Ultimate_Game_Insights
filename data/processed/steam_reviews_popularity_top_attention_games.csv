@@ -1,0 +1,21 @@
+appid,name,release_year,price,is_free,review_count_calc,positive_rate_calc,recommendations,peak_ccu,average_playtime_forever,genres
+730,Counter-Strike 2,2012,0.0,True,8615921,86.82545951848908,4401572,1212356,33189,"['Action', 'Free To Play']"
+578080,PUBG: BATTLEGROUNDS,2017,0.0,True,2512396,59.22474004894133,1732007,616738,0,"['Action', 'Adventure', 'Massively Multiplayer', 'Free To Play']"
+252490,Rust,2018,39.99,False,1195980,87.2680145152929,992825,200902,21195,"['Action', 'Adventure', 'Indie', 'Massively Multiplayer', 'RPG']"
+271590,Grand Theft Auto V Legacy,2015,0.0,True,1969962,87.30879072794298,1803063,117698,19323,"['Action', 'Adventure']"
+570,Dota 2,2013,0.0,True,2449800,81.57653686015185,14337,555977,43031,"['Action', 'Strategy', 'Free To Play']"
+359550,Tom Clancy's Rainbow Six® Siege,2015,3.99,False,1371209,84.06909522910074,1165929,89916,14204,['Action']
+431960,Wallpaper Engine,2018,4.99,False,872956,98.0365562525488,809225,120461,0,"['Casual', 'Indie', 'Animation & Modeling', 'Design & Illustration', 'Photo Editing', 'Utilities']"
+2246340,Monster Hunter Wilds,2025,69.99,False,132740,56.25357842398674,88048,703236,1765,"['Action', 'Adventure', 'RPG']"
+413150,Stardew Valley,2016,14.99,False,854853,98.42779986734561,729406,67309,4871,"['Indie', 'RPG', 'Simulation']"
+1245620,ELDEN RING,2022,59.99,False,1029858,92.8423141831204,749109,46121,11768,"['Action', 'RPG']"
+553850,HELLDIVERS™ 2,2024,39.99,False,978223,75.98390142125058,716326,48290,0,['Action']
+105600,Terraria,2011,9.99,False,1379233,97.50150989716748,1098792,30516,0,"['Action', 'Adventure', 'Indie', 'RPG']"
+2358720,Black Myth: Wukong,2024,59.99,False,1136184,96.67210592650486,825294,35990,0,"['Action', 'Adventure', 'RPG']"
+4000,Garry's Mod,2006,5.99,False,1143416,96.78795818844586,984713,32384,10987,"['Casual', 'Indie', 'Simulation']"
+1086940,Baldur's Gate 3,2023,59.99,False,733133,96.82554188666995,647659,48021,9387,"['Adventure', 'RPG', 'Strategy']"
+227300,Euro Truck Simulator 2,2012,19.99,False,848034,97.36461038118755,669576,43539,0,"['Indie', 'Simulation']"
+1938090,Call of Duty®,2022,0.0,True,692029,58.63077992396273,379597,56993,5271,['Action']
+1174180,Red Dead Redemption 2,2019,59.99,False,694082,92.07615238545301,640318,39811,0,"['Action', 'Adventure']"
+221100,DayZ,2018,49.99,False,421589,76.495591678151,349722,63109,11635,"['Action', 'Adventure', 'Massively Multiplayer']"
+1091500,Cyberpunk 2077,2020,59.99,False,822265,83.945321763665,735210,29239,4993,['RPG']
