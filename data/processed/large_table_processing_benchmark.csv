@@ -1,0 +1,11 @@
+tool,task,elapsed_sec,rss_before_mb,rss_after_mb,rss_delta_mb,rows,columns,output_file,output_size_mb
+pandas,selected_column_read,1.516,268.05,484.16,216.11,89618,17,,
+duckdb,selected_column_read,1.0428,487.81,703.67,215.86,89618,17,,
+polars,selected_column_read,0.1616,703.67,823.58,119.91,89618,17,,
+pandas,yearly_aggregation_from_csv,1.3344,823.89,933.73,109.84,27,6,,
+duckdb,yearly_aggregation_from_csv,0.9348,933.73,944.02,10.28,27,6,,
+polars,yearly_aggregation_from_csv,0.1982,943.97,999.77,55.8,27,6,,
+polars,csv_selected_columns_to_parquet,0.2505,999.8,974.12,-25.67,89618,17,steam_march2025_selected.parquet,6.01
+pandas,read_selected_parquet,0.1562,977.91,1024.8,46.89,89618,17,,
+duckdb,read_selected_parquet,0.1036,1024.8,1012.22,-12.58,89618,17,,
+polars,read_selected_parquet,0.0398,1012.25,1031.39,19.14,89618,17,,
