@@ -150,6 +150,10 @@ Current progress:
 - `notebooks/03_steam_data_cleaning_and_features.ipynb`: completed and executed. It standardizes fields, checks missing values, duplicates, and abnormal ranges, converts date and numeric columns, handles Steam percentage sentinel values, creates analysis features, and saves a reusable feature dataset.
 - `notebooks/04_steam_market_structure_analysis.ipynb`: completed, refined, and executed. It analyzes Steam market structure through release trends, price/free-game structure, platform support, genres, categories, tags, developer/publisher long tails, and a light May 2024 vs March 2025 snapshot comparison. The free-vs-paid chart now uses a cleaner donut chart, and the final summary cell can recover required data if the notebook kernel is restarted.
 - `notebooks/05_steam_reviews_popularity_analysis.ipynb`: completed and executed. It analyzes player feedback and popularity through review counts, positive rates, recommendations, peak CCU, playtime, price buckets, platform count, genres, release timing, correlations, and a light May 2024 vs March 2025 feedback snapshot comparison.
+- `notebooks/06_steam_tag_genre_positioning_analysis.ipynb`: completed and executed. It analyzes tags, genres, categories, tag competition, high-feedback niches, genre-tag positioning, tag co-occurrence, Indie tag lift, and positioning features for a future similarity recommender.
+- `notebooks/07_report_synthesis.ipynb`: completed and executed. It synthesizes the full notebook sequence into a course-report narrative, covering methodology, dataset scale, large-table processing, cleaning, market structure, player feedback, tag positioning, limitations, and future recommender direction.
+
+Main notebook storyline status: completed from `01` through `07`.
 
 Current generated intermediate files:
 
@@ -166,6 +170,16 @@ Current generated intermediate files:
 - `data/processed/steam_reviews_popularity_correlation.csv`
 - `data/processed/steam_reviews_popularity_snapshot_summary.csv`
 - `data/processed/steam_reviews_popularity_top_attention_games.csv`
+- `data/processed/steam_tag_positioning_summary.csv`
+- `data/processed/steam_tag_niche_high_feedback_candidates.csv`
+- `data/processed/steam_tag_high_attention_summary.csv`
+- `data/processed/steam_genre_tag_matrix_top.csv`
+- `data/processed/steam_tag_cooccurrence_counts_top.csv`
+- `data/processed/steam_tag_cooccurrence_jaccard_top.csv`
+- `data/processed/steam_tag_cooccurrence_pairs_top.csv`
+- `data/processed/steam_indie_tag_lift_summary.csv`
+- `data/processed/steam_positioning_features_sample.csv`
+- `reports/final_report_summary.md`
 
 Current generated figures:
 
@@ -199,6 +213,14 @@ Current generated figures:
 - `figures/28_game_age_vs_review_count.png`
 - `figures/29_feedback_popularity_correlation_heatmap.png`
 - `figures/30_snapshot_feedback_popularity_comparison.png`
+- `figures/31_tag_genre_category_frequency.png`
+- `figures/32_tag_competition_vs_positive_feedback.png`
+- `figures/33_niche_high_feedback_tags.png`
+- `figures/34_genre_tag_positioning_heatmap.png`
+- `figures/35_tag_cooccurrence_jaccard_heatmap.png`
+- `figures/36_indie_tag_lift.png`
+- `figures/37_tag_count_positioning_complexity.png`
+- `figures/38_report_notebook_workflow.png`
 
 Main notebook sequence:
 
@@ -243,10 +265,14 @@ Main notebook sequence:
    - Analyze Steam tags and genres as market-positioning signals.
    - Study tag frequency, tag co-occurrence, competition, and high-feedback tag groups.
    - Connect tag/genre structure to future similarity recommendation ideas.
+   - Current status: completed and executed.
+   - Current findings: the dataset contains 33 genres, 40 categories, and 452 tags; games have about 11.26 tags on average; `Indie`, `Single-player`, and `Indie` are the top genre/category/tag by coverage; `Sokoban` appears as a low-competition high-feedback tag candidate; `Indie + Singleplayer` is one of the strongest top-tag co-occurrence pairs; `Short` is relatively over-represented in Indie-positioned games.
 
 7. `notebooks/07_report_synthesis.ipynb`
    - Summarize methodology, processing strategy, cleaning workflow, feature engineering, major findings, limitations, and future work.
    - This notebook should be Markdown-heavy and suitable for course report writing.
+   - Current status: completed and executed.
+   - Current output: `reports/final_report_summary.md` and `figures/38_report_notebook_workflow.png`.
 
 Optional final extension outside the main notebook storyline:
 
