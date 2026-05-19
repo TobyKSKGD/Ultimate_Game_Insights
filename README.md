@@ -1,108 +1,181 @@
-# Ultimate_Game_Insights
+# SteamScope: Large-scale Steam Game Market and Popularity Analysis
+
+This repository is a personal final project for a Big Data Processing and Analysis course. The project uses Steam Games Dataset 2025 as a large tabular data case study.
+
+The project goal is to transform large-scale Steam game tables into decision-oriented insights about market structure, player feedback, popularity, and platform ecosystem changes.
+
+Recommended Chinese title:
+
+**基于大规模 Steam 游戏数据的市场结构、玩家反馈与平台生态变化分析**
+
+The repository name remains `Ultimate_Game_Insights` for continuity, but the report and notebook storyline should use the SteamScope title.
+
+For the full project memory, research framing, reference-paper takeaways, notebook storyline, and implementation rules, read:
+
+[`reports/project_brief.md`](reports/project_brief.md)
 
 ## Project Vision
 
-Ultimate_Game_Insights is a personal final project for a Big Data Processing and Analysis course. The project uses the Kaggle Ultimate Games Dataset to explore game metadata, ratings, platforms, genres, tags, popularity, and engagement indicators.
+The project should show that a medium-to-large real-world tabular dataset can be processed step by step with a clear and verifiable workflow.
 
-The main goal is to demonstrate a clear, step-by-step data analysis workflow with AI-assisted development. The project is intentionally organized as a series of Jupyter Notebooks, similar to Kaggle-style data analysis notebooks: each notebook should contain Chinese Markdown explanations, executable Python code, visible outputs, saved figures, and report-ready findings.
+The Steam dataset is suitable for the course because it contains multiple CSV files totaling about 1.7GB, long text columns, mixed data types, multi-label fields, time fields, review metrics, popularity indicators, and platform information.
 
-Although the dataset is not "big data" in the strict distributed-computing sense, it is still suitable for a course project because it contains 15,000 games, 43 original fields, multi-label columns, mixed data types, missing values, text fields, time fields, and multiple behavioral indicators. The project should present it as a medium-scale, heterogeneous dataset that can be processed with big-data thinking: data cleaning, data type recognition, feature engineering, exploratory analysis, visualization, time-based analysis, and AI-assisted workflow documentation.
+Core research questions:
+
+1. What kinds of Steam games are more likely to gain player attention?
+2. How did the Steam game market change between the May 2024 and March 2025 dataset snapshots?
 
 Course alignment:
 
-- Chapter 2: use AI agents and vibe coding as part of the development workflow, while keeping code runnable and results verifiable.
-- Chapter 3: follow a data analysis framework and explicitly recognize data types.
-- Chapter 4: focus on tabular data understanding, cleaning, feature construction, and visualization.
-- Chapter 5: add time-oriented analysis using `release_date` and `release_year`.
+- Chapter 2: use AI agents and vibe coding responsibly, while keeping code runnable and results verifiable.
+- Chapter 3: follow a complete data analysis framework and explicitly recognize data types.
+- Chapter 4: focus on large-scale tabular data processing tools, including reading, filtering, aggregation, memory use, and performance comparison.
+- Chapter 5: analyze time-related fields such as `release_date` and version snapshots from 2024 and 2025.
 
-Important project rule for future assistants: this is primarily a notebook-based data analysis project, not a full software system. Avoid over-engineering, avoid unnecessary dependencies, and do not turn the project into a complex application unless the user explicitly asks for that.
+Important rule for future assistants: this is primarily a notebook-based data analysis project, not a full software system. Keep notebooks focused, reproducible, and report-ready. Do not over-engineer the project.
 
 ## Dataset
 
-Dataset source: Kaggle Ultimate Games Dataset.
+Dataset source: Steam Games Dataset 2025
 
-dataset: https://www.kaggle.com/datasets/rudrakumargupta/ultimate-games-dataset-15k-games-43-features/data
+Kaggle link: <https://www.kaggle.com/datasets/artermiloff/steam-games-dataset>
 
-Place the raw CSV file at:
+The dataset is too large to upload to GitHub. The raw files should be downloaded locally and stored under:
 
-```bash
-data/raw/Ultimate_Games_Dataset.csv
+```text
+data/raw/archive/
 ```
 
-If the raw data file is too large for GitHub, keep only the Kaggle source link in the project documentation and do not upload the original CSV.
+After downloading and extracting the Kaggle archive, the expected structure is:
 
-## Notebooks
+```text
+data/raw/archive/
+├── games_march2025_cleaned.csv
+├── games_march2025_full.csv
+├── games_may2024_cleaned.csv
+└── games_may2024_full.csv
+```
 
-Current progress:
+Current local file sizes:
 
-- `notebooks/01_initial_eda.ipynb`: initial data exploration, basic quality checks, light preprocessing, basic feature engineering, and first-round visualizations.
-- `notebooks/02_deeper_analysis.ipynb`: deeper analysis of genres, platforms, release years, tags, text-derived features, numeric correlations, and saved feature data.
+- `games_march2025_cleaned.csv`: about 447MB
+- `games_march2025_full.csv`: about 450MB
+- `games_may2024_cleaned.csv`: about 403MB
+- `games_may2024_full.csv`: about 405MB
 
-Recommended next notebooks:
+Approximate row counts:
 
-- `notebooks/03_temporal_trend_analysis.ipynb`: a dedicated time-oriented analysis notebook aligned with the course chapter on time series data. It should analyze release year/date trends, rolling release counts, decade cohorts, genre changes over time, rating/popularity/engagement changes over time, and possible abnormal years. This should remain exploratory and should not implement complex forecasting.
-- `notebooks/04_segmentation_and_pca.ipynb`: optional later notebook for simple unsupervised analysis. It can use standardized numeric features, PCA for 2D visualization, and basic clustering to describe game groups. This should be framed as exploratory grouping, not as a recommendation system.
-- `notebooks/05_report_synthesis.ipynb`: optional final notebook that collects key figures and findings into a report-ready storyline, including limitations and future work.
+- `games_march2025_cleaned.csv`: 89,619 rows
+- `games_march2025_full.csv`: 94,949 rows
+- `games_may2024_cleaned.csv`: 83,647 rows
+- `games_may2024_full.csv`: 87,807 rows
 
-`notebooks/01_initial_eda.ipynb` includes:
+Key columns include:
 
-- Python environment and package version checks
-- Dataset loading from `data/raw/Ultimate_Games_Dataset.csv`
-- Basic data overview, including shape, column types, missing values, and field categories
-- Missing value, duplicate, and basic range checks
-- Gentle preprocessing for dates, numeric fields, and multi-label columns
-- Basic feature engineering for genre count, platform count, tag count, description length, release decade, and recent-game flags
-- Initial visualizations saved to `figures/`
-- Preliminary findings based on the executed notebook outputs
+- Basic game fields: `appid`, `name`, `release_date`
+- Platform fields: `windows`, `mac`, `linux`
+- Price and package fields: `price`, `discount`, `dlc_count`, `packages`
+- Review and rating fields: `positive`, `negative`, `user_score`, `metacritic_score`, `pct_pos_total`, `num_reviews_total`, `pct_pos_recent`, `num_reviews_recent`
+- Popularity fields: `recommendations`, `peak_ccu`
+- Playtime fields: `average_playtime_forever`, `average_playtime_2weeks`, `median_playtime_forever`, `median_playtime_2weeks`
+- Multi-label fields: `genres`, `categories`, `tags`, `developers`, `publishers`, `supported_languages`, `full_audio_languages`
+- Text fields: `detailed_description`, `about_the_game`, `short_description`, `reviews`
 
-`notebooks/02_deeper_analysis.ipynb` includes:
+## Download Instructions
 
-- Multi-label processing for genres, platforms, and tags
-- Genre-level rating, popularity, and engagement analysis
-- Single-platform vs multi-platform comparison
-- Release year and release decade trend analysis
-- Tag count and description length analysis
-- Numeric feature correlation analysis
-- Feature dataset export to `data/processed/Ultimate_Games_Dataset_features.csv`
+The first notebook should include the download code as a commented reference cell. Do not run it every time, because the data is large.
+
+Recommended KaggleHub reference code:
+
+```python
+# Optional one-time download. Keep this commented unless the dataset is missing.
+# import kagglehub
+# from pathlib import Path
+# import shutil
+#
+# dataset_path = kagglehub.dataset_download("artermiloff/steam-games-dataset")
+# target_dir = Path("data/raw/archive")
+# target_dir.mkdir(parents=True, exist_ok=True)
+#
+# # Copy downloaded CSV files into the project data folder.
+# for csv_file in Path(dataset_path).glob("*.csv"):
+#     shutil.copy2(csv_file, target_dir / csv_file.name)
+#
+# print("Dataset copied to:", target_dir.resolve())
+```
+
+Alternative Kaggle CLI workflow:
+
+```bash
+# Optional one-time download. Run from the project root only if data is missing.
+# mkdir -p data/raw
+# kaggle datasets download -d artermiloff/steam-games-dataset -p data/raw
+# unzip data/raw/steam-games-dataset.zip -d data/raw/archive
+```
+
+Raw data files should not be committed to GitHub. Keep the Kaggle link and download instructions instead.
+
+## Notebook Plan
+
+The project follows a clean Steam dataset notebook storyline.
+
+Main notebook sequence:
+
+1. `notebooks/01_steam_dataset_overview.ipynb`
+   - Introduce the Steam dataset.
+   - Verify expected files under `data/raw/archive/`.
+   - Show file sizes, row counts, columns, sample rows, and data types.
+   - Explain why large CSV files require careful reading strategies.
+   - Include commented download instructions.
+
+2. `notebooks/02_large_table_processing_strategy.ipynb`
+   - Compare practical large-table processing strategies.
+   - Focus on `pandas`, `duckdb`, and `polars`.
+   - Use `pyarrow` for Parquet conversion where useful.
+   - Compare selected-column loading, filtering, groupby aggregation, memory use, and CSV vs Parquet strategy.
+   - Keep tool comparison useful but not larger than the Steam market analysis itself.
+
+3. `notebooks/03_steam_data_cleaning_and_features.ipynb`
+   - Standardize column names such as `AppID` vs `appid`.
+   - Check missing values, duplicates, abnormal values, and date parsing.
+   - Clean numeric fields such as price, reviews, playtime, and peak CCU.
+   - Create features such as game age, free/paid flag, platform count, review count, positive-rate features, text length, genre count, tag count, and language count.
+   - Process multi-label fields such as `genres`, `categories`, `tags`, `developers`, and `publishers`.
+   - Save feature data to `data/processed/`.
+
+4. `notebooks/04_steam_market_structure_analysis.ipynb`
+   - Analyze Steam game market structure.
+   - Study price distribution, free vs paid games, platform support, genres, tags, developers, publishers, and review volume.
+
+5. `notebooks/05_steam_reviews_popularity_analysis.ipynb`
+   - Analyze review metrics, positive rates, recommendations, peak CCU, playtime, and release-year trends.
+   - Compare May 2024 and March 2025 snapshots where useful.
+
+6. `notebooks/06_steam_tag_genre_positioning_analysis.ipynb`
+   - Analyze Steam tags and genres as market-positioning signals.
+   - Study tag frequency, tag co-occurrence, competition, and high-feedback tag groups.
+   - Connect tag/genre structure to future similarity recommendation ideas.
+
+7. `notebooks/07_report_synthesis.ipynb`
+   - Summarize methodology, processing strategy, cleaning workflow, feature engineering, major findings, limitations, and future work.
+   - This notebook should be Markdown-heavy and suitable for course report writing.
+
+Optional final extension outside the main notebook storyline:
+
+- Build a simple Steam game similarity recommender using tags, genres, categories, and descriptions.
+- This should be implemented later as a script or small app, not as part of the core big-data analysis notebooks.
 
 ## Notebook Style Guidelines
 
-- All notebook Markdown explanations, analysis comments, and conclusions should be written in Chinese so the student and teacher can read them easily.
-- Figure titles and axis labels may stay in English to avoid Chinese font rendering problems in Matplotlib.
+- All notebook Markdown explanations, analysis comments, and conclusions should be written in Chinese.
+- Figure titles and axis labels may stay in English to avoid Chinese font rendering issues in Matplotlib.
 - Each major step should follow the Kaggle-style pattern: Chinese Markdown explanation, Python code, visible table/figure output, and Chinese interpretation.
-- Keep notebooks focused and incremental. Do not put all analysis into one large notebook.
-- Prefer `pandas`, `numpy`, `matplotlib`, `seaborn`, `scikit-learn`, `jupyter`, `notebook`, and `ipykernel`. Do not add new dependencies unless there is a clear reason.
-- If a new Python package is added, update `requirements.txt` with `pip freeze > requirements.txt`.
-- Do not train complex machine learning models, build a recommendation system, or implement prediction tasks unless the user explicitly asks for a later extension.
-- Preserve previous notebooks. Create new notebooks for new analysis stages instead of overwriting earlier work.
+- Keep notebooks focused and incremental. Do not put all analysis into one huge notebook.
 - Save generated figures to `figures/`.
 - Save reusable processed datasets to `data/processed/`.
-
-## Suggested Next Step
-
-The strongest next step is `03_temporal_trend_analysis.ipynb`.
-
-Reason: the first two notebooks already cover the course topics of tabular data understanding, missing values, multi-label fields, basic feature engineering, visualization, and correlation analysis. The course materials also include a chapter on time series data. A dedicated temporal notebook would show that the project applies the lecture content beyond generic EDA.
-
-Suggested contents for Notebook 03:
-
-- Load `data/processed/Ultimate_Games_Dataset_features.csv` first, and fall back to `data/raw/Ultimate_Games_Dataset.csv` if needed.
-- Recheck `release_date`, `release_year`, and `release_decade`.
-- Analyze yearly release counts and decade-level release counts.
-- Add rolling averages for yearly game releases.
-- Compare average `user_rating`, `metacritic`, `popularity_score`, and `engagement_score` by year and decade.
-- Analyze genre composition changes over time, especially the top genres.
-- Analyze platform expansion over time using `platform_count_check` or `platform_count`.
-- Identify abnormal years with unusually high or low release counts using simple z-score or IQR logic.
-- Save all figures to `figures/` with filenames beginning from `23_`.
-- End with Chinese, report-ready findings and limitations.
-
-Avoid in Notebook 03:
-
-- Complex forecasting models.
-- Recommendation systems.
-- Heavy NLP.
-- New dependencies.
+- Do not run large downloads automatically inside notebooks; keep download code commented.
+- Do not commit raw CSV files or downloaded Kaggle archives.
+- Do not build the final recommendation system until the analysis notebooks are complete.
 
 ## Project Structure
 
@@ -110,6 +183,7 @@ Avoid in Notebook 03:
 Ultimate_Game_Insights/
 ├── data/
 │   ├── raw/
+│   │   └── archive/
 │   └── processed/
 ├── notebooks/
 ├── figures/
@@ -130,25 +204,34 @@ source .venv/bin/activate
 python -m pip install --upgrade pip
 ```
 
-Install the basic dependencies:
+Install project dependencies:
 
 ```bash
-pip install pandas numpy matplotlib seaborn scikit-learn jupyter notebook ipykernel
+pip install -r requirements.txt
 ```
 
-After installing dependencies, update `requirements.txt`:
-
-```bash
-pip freeze > requirements.txt
-```
-
-Whenever you add a new Python package later, run this command again:
+If you install or remove Python packages later, update the dependency file:
 
 ```bash
 pip freeze > requirements.txt
 ```
 
-## Run the Notebook
+## Core Dependencies
+
+The Steam version of this project uses:
+
+- `pandas`, `numpy`: baseline data analysis
+- `matplotlib`, `seaborn`: visualization
+- `scikit-learn`: later feature scaling, PCA, clustering, and possible similarity experiments
+- `jupyter`, `notebook`, `ipykernel`: notebook workflow
+- `polars`: high-performance DataFrame processing
+- `duckdb`: SQL-based analytics over large CSV/Parquet files
+- `dask[dataframe]`: chunked/distributed-style DataFrame processing
+- `pyarrow`: columnar data and Parquet support
+- `psutil`: memory and CPU measurement for benchmarks
+- `kagglehub`: optional Kaggle dataset download helper
+
+## Run Notebooks
 
 Start Jupyter Notebook from the project root:
 
@@ -156,9 +239,14 @@ Start Jupyter Notebook from the project root:
 jupyter notebook
 ```
 
-Then open:
+Then follow the new Steam notebook sequence:
 
 ```text
-notebooks/01_initial_eda.ipynb
-notebooks/02_deeper_analysis.ipynb
+notebooks/01_steam_dataset_overview.ipynb
+notebooks/02_large_table_processing_strategy.ipynb
+notebooks/03_steam_data_cleaning_and_features.ipynb
+notebooks/04_steam_market_structure_analysis.ipynb
+notebooks/05_steam_reviews_popularity_analysis.ipynb
+notebooks/06_steam_tag_genre_positioning_analysis.ipynb
+notebooks/07_report_synthesis.ipynb
 ```

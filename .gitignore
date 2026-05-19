@@ -187,3 +187,10 @@ cython_debug/
 
 # Python bytecode
 *.pyc
+
+# Large local datasets
+data/raw/archive/
+data/raw/*.zip
+data/raw/*.7z
+data/raw/*.tar
+data/raw/*.tar.gz
