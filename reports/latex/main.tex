@@ -19,6 +19,7 @@
 \usepackage{amsmath}
 
 \geometry{left=2.8cm,right=2.8cm,top=2.6cm,bottom=2.6cm}
+\xeCJKsetup{CJKecglue={}}
 \linespread{1.35}
 \setlength{\parindent}{2em}
 \setlength{\parskip}{0.2em}
@@ -38,7 +39,7 @@
   citecolor=SUFEBlue,
   hypertexnames=false,
   pdfauthor={张思拓},
-  pdftitle={基于大规模 Steam 游戏数据的市场结构、玩家反馈与平台生态变化分析}
+  pdftitle={基于大规模Steam游戏数据的市场结构、玩家反馈与平台生态变化分析}
 }
 
 % =========================
@@ -99,7 +100,7 @@
 % =========================
 % Document metadata
 % =========================
-\newcommand{\reporttitle}{基于大规模 Steam 游戏数据的市场结构、玩家反馈与平台生态变化分析}
+\newcommand{\reporttitle}{基于大规模Steam游戏数据的市场结构、玩家反馈与平台生态变化分析}
 \newcommand{\studentname}{张思拓}
 \newcommand{\studentid}{2025134009}
 \newcommand{\projectname}{Ultimate\_Game\_Insights}
@@ -164,20 +165,14 @@
 \section{问题背景与研究目标}
 
 \subsection{现实背景}
-\placeholder{说明为什么选择 Steam 游戏数据作为“大数据处理技术”课程项目。可以写：Steam 是重要的数字游戏发行平台，游戏数量多、字段复杂、玩家反馈丰富，适合做大规模表格数据分析。}
+Steam是目前PC游戏领域中影响力较大的数字发行平台之一。平台上汇集了大量不同类型、不同规模和不同发行年代的游戏作品，既包括大型商业游戏，也包括独立游戏和中小团队作品。对于玩家来说，Steam不仅是购买和下载游戏的平台，也是查看游戏评价、浏览标签分类、了解游戏热度和参与社区互动的重要入口。
+
+由于Steam长期积累了大量游戏信息和玩家反馈数据，其平台数据具有较强的分析价值。每款游戏通常包含发行时间、价格、支持平台、类型标签、开发商、发行商、玩家评论、推荐数、在线人数和游玩时长等字段。这些数据从不同角度记录了游戏的市场表现和玩家反馈，也为观察PC游戏市场的整体结构提供了较好的数据基础。
 
 \subsection{研究问题}
-\placeholder{写清楚报告围绕哪些问题展开。建议保留两个核心问题：什么样的 Steam 游戏更容易获得玩家关注；Steam 游戏市场在 2024 到 2025 之间发生了什么变化。}
+基于Steam平台长期积累的游戏信息和玩家反馈数据，本次实践主要关注两个方面的问题。一方面，分析哪些Steam游戏更容易获得玩家关注。玩家关注度可以通过评论数量、推荐数、峰值在线人数和游玩时长等指标进行刻画，而价格、发行时间、平台支持情况、类型和标签等字段，则可以用于观察不同游戏特征与玩家关注度之间的关系。
 
-\subsection{研究目标与技术路线}
-\placeholder{说明你希望通过什么步骤回答问题。可以概括 Notebook 主线：数据理解、大表处理工具对比、数据清洗、特征工程、市场结构分析、玩家反馈分析、标签定位分析和报告综合。}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.92\textwidth]{../../figures/38_report_notebook_workflow.png}
-  \caption{Notebook 分析流程}
-  \label{fig:notebook-workflow}
-\end{figure}
+另一方面，也关注Steam游戏市场在2024年5月到2025年3月之间的变化。通过对两个数据快照进行比较，可以观察这一阶段平台上的游戏数量、类型分布、标签结构、玩家反馈和热度表现是否出现变化。
 
 \section{数据来源与字段说明}
 
@@ -234,7 +229,7 @@
 \subsection{特征工程}
 \placeholder{列出主要特征：game\_age\_years、is\_free、platform\_count、review\_count\_calc、positive\_rate\_calc、genres\_count、tags\_count、description length、log 热度指标等。}
 
-\section{Steam 游戏市场结构分析}
+\section{Steam游戏市场结构分析}
 
 \subsection{发行年份趋势}
 \placeholder{根据 Notebook 04，用自己的话解释发行年份分布。可以写 2024 年是数据集中发行数量最高的年份，说明近年 Steam 游戏供给扩张明显。}
@@ -326,31 +321,6 @@
 
 \subsection{后续方向}
 \placeholder{说明后续可做 PCA、聚类、简单评分预测或相似游戏推荐系统。推荐系统可以使用 tags、genres、categories 和文本描述计算相似度，再用评论数、好评率、热度指标进行过滤或排序。}
-
-\section{AI 辅助与程序说明}
-
-\subsection{AI 辅助说明}
-\placeholder{说明本项目允许使用 AI Agent / Vibe Coding。你可以写：AI 主要用于代码生成、调试、LaTeX 环境配置和格式辅助；报告核心观点和最终解释由本人基于 Notebook 输出结果整理。}
-
-\subsection{程序与环境说明}
-\placeholder{写明 Python 环境、主要依赖包、Notebook 文件名、LaTeX 编译方式。可以引用 README 和 requirements.txt。}
-
-\begin{table}[H]
-  \centering
-  \caption{项目主要文件说明}
-  \begin{tabularx}{0.95\textwidth}{lX}
-    \toprule
-    文件或目录 & 说明 \\
-    \midrule
-    notebooks/01--07 & 数据分析主线 Notebook \\
-    data/raw/archive/ & 原始 Kaggle 数据，本地保存，不提交 GitHub \\
-    data/processed/ & 小型 summary CSV 和可再生中间数据 \\
-    figures/ & 报告图表输出 \\
-    reports/latex/main.tex & 本报告 LaTeX 源文件 \\
-    requirements.txt & Python 环境依赖 \\
-    \bottomrule
-  \end{tabularx}
-\end{table}
 
 \section*{参考资料}
 \addcontentsline{toc}{section}{参考资料}
