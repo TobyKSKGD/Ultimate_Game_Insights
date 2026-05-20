@@ -100,6 +100,7 @@ Important fields include:
 - Price/package fields: `price`, `discount`, `dlc_count`, `packages`
 - Reviews and ratings: `positive`, `negative`, `user_score`, `metacritic_score`, `pct_pos_total`, `num_reviews_total`, `pct_pos_recent`, `num_reviews_recent`
 - Popularity proxies: `recommendations`, `peak_ccu`
+- Ownership/sales proxy: `estimated_owners`; this is an estimated owner range, not official Steam sales.
 - Playtime: `average_playtime_forever`, `average_playtime_2weeks`, `median_playtime_forever`, `median_playtime_2weeks`
 - Multi-label fields: `genres`, `categories`, `tags`, `developers`, `publishers`, `supported_languages`, `full_audio_languages`
 - Text fields: `detailed_description`, `about_the_game`, `short_description`, `reviews`
@@ -153,7 +154,7 @@ Key Python packages currently used:
 
 ## 7. Notebook Status
 
-The main notebook sequence is complete from `01` to `07`.
+The main notebook sequence is complete from `01` to `08`.
 
 ### 01_steam_dataset_overview.ipynb
 
@@ -289,6 +290,38 @@ Important outputs:
 - `figures/38_report_notebook_workflow.png`
 - `reports/final_report_summary.md`
 
+### 08_sales_proxy_publishing_strategy.ipynb
+
+Purpose:
+
+- parse `estimated_owners` into lower bound, upper bound, and midpoint,
+- use the midpoint as a descriptive sales proxy for buyout/paid games,
+- keep the caveat that `estimated_owners` is not official sales data,
+- compare sales proxy with review count, recommendations, and peak CCU,
+- analyze buyout game price buckets and rough gross revenue proxy,
+- summarize genre and tag patterns for indie buyout games,
+- summarize discussion-oriented metrics for large publishers,
+- summarize feedback and engagement signals for free live-service style games,
+- export report-friendly strategy tables and figures.
+
+Important outputs:
+
+- `figures/39_estimated_owners_bucket_distribution.png`
+- `figures/40_sales_proxy_vs_discussion_metrics.png`
+- `figures/41_buyout_price_bucket_sales_proxy.png`
+- `figures/42_buyout_genre_sales_proxy.png`
+- `figures/43_indie_tag_sales_proxy_candidates.png`
+- `figures/44_discussion_score_by_price_bucket.png`
+- `figures/45_free_game_tag_feedback_engagement.png`
+- `data/processed/steam_sales_proxy_publishing_strategy_summary.csv`
+
+Current notes:
+
+- The notebook is descriptive and should not be framed as sales prediction.
+- For buyout games, `estimated_owners` midpoint is treated as a sales proxy.
+- For free games, `estimated_owners` should be interpreted as estimated reach/ownership, not sales revenue.
+- Strategy displays should not hide adult/mature tags. Treat them as real Steam market signals, but discuss them neutrally as a special segment that may also reflect low-quality supply concentration and tag saturation.
+
 ## 8. Generated Outputs
 
 Main generated figures:
@@ -331,6 +364,13 @@ Main generated figures:
 - `figures/36_indie_tag_lift.png`
 - `figures/37_tag_count_positioning_complexity.png`
 - `figures/38_report_notebook_workflow.png`
+- `figures/39_estimated_owners_bucket_distribution.png`
+- `figures/40_sales_proxy_vs_discussion_metrics.png`
+- `figures/41_buyout_price_bucket_sales_proxy.png`
+- `figures/42_buyout_genre_sales_proxy.png`
+- `figures/43_indie_tag_sales_proxy_candidates.png`
+- `figures/44_discussion_score_by_price_bucket.png`
+- `figures/45_free_game_tag_feedback_engagement.png`
 
 Small summary outputs under `data/processed/` include:
 
@@ -339,6 +379,7 @@ Small summary outputs under `data/processed/` include:
 - `steam_march2025_features_sample.csv`
 - review/popularity summary CSV files,
 - tag/genre positioning summary CSV files.
+- sales-proxy and publishing-strategy summary CSV files.
 
 Large ignored outputs include:
 
@@ -426,7 +467,33 @@ Current LaTeX notes:
 - Course name on cover: `《大数据处理技术》课程实践报告`
 - Topic on cover: `基于大规模 Steam 游戏数据的市场结构、玩家反馈与平台生态变化分析`
 
-## 11. Optional Future Extension
+## 11. Sales Proxy and Publishing Strategy Notes
+
+Notebook 08 adds a report-supporting analysis layer for publishing strategy.
+
+Key interpretation rules:
+
+- `estimated_owners` is an estimated owner range from the dataset, not official sales.
+- It is acceptable in this course project to use the range midpoint as a descriptive sales proxy, as long as the limitation is clearly stated.
+- For buyout games, the midpoint can support discussion about rough sales scale.
+- For free games, the midpoint should be interpreted as estimated ownership/reach, not revenue.
+- A rough gross revenue proxy can be computed as `price * estimated_owner_mid`, but it does not account for discounts, regional pricing, refunds, platform fees, taxes, bundles, DLC, or time of purchase.
+
+Latest Notebook 08 findings to preserve:
+
+- For buyout games, the `$40-79.99` bucket has the highest median estimated-owner midpoint in the current price-bucket summary, but it contains far fewer games than lower-price buckets.
+- The `$40-79.99` bucket also has the highest median rough gross revenue proxy among standard buckets in the current summary.
+- Buyout genre summaries show many major genres with the same median estimated-owner midpoint because `estimated_owners` is bucketed coarsely; avoid over-interpreting small rank differences.
+- Indie buyout tag candidates include tags such as `Kickstarter`, `Touch-Friendly`, `Sequel`, `Moddable`, `Episodic`, and `Villain Protagonist` under the notebook thresholds.
+- Free-game strategy summaries currently include tags such as `Idler`, `Moddable`, `Hentai`, `MMORPG`, `Mature`, `Online Co-Op`, `Trading`, and `Co-op`. Adult/mature tags should be analyzed instead of hidden, with clear caveats about platform rules, audience limits, low-quality supply concentration, and tag saturation.
+
+Suggested report framing:
+
+- Independent developers: discuss buyout sales proxy, price bucket, manageable tag competition, and positive-rate stability.
+- Large publishers: discuss review count, recommendations, peak CCU, and discussion score rather than sales proxy alone.
+- Free live-service games: discuss review volume, positive rate, peak CCU, and recommendations; do not treat estimated owners as sales revenue.
+
+## 12. Optional Future Extension
 
 A Steam game similarity recommender is a reasonable final extension, but it should not be part of the core big-data notebook sequence.
 
@@ -441,7 +508,7 @@ Possible implementation:
 
 If implemented, describe it as a post-analysis extension rather than the central course project.
 
-## 12. Agent Checklist Before Future Work
+## 13. Agent Checklist Before Future Work
 
 Before creating or modifying notebooks:
 

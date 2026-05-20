@@ -1,0 +1,4 @@
+scenario,main_goal,suggested_metrics,data_based_hint,caution
+独立开发者 / 买断制游戏,在有限预算下获得较稳定的估计销量和基础收入,estimated_owners 区间中点、价格区间、粗略收入代理、好评率,"从价格桶看，估计拥有者中位数较高的价格区间为 $40-79.99；粗略收入代理中位数较高的价格区间为 $40-79.99。可重点参考的买断制类型包括：Action, Massively Multiplayer, Utilities, Strategy, Sports。",estimated_owners 是估计区间，不是官方销量；低价可能提升拥有者规模，但不一定提升收入。
+大型发行商 / 高投入游戏,形成更高讨论热度、推荐数和在线参与,评论数、推荐数、peak_ccu、discussion_score、好评率,应同时观察销量代理和讨论热度代理。高估计拥有者不一定等于高好评率，高评论数也可能伴随争议。,讨论热度反映关注度，不直接等于口碑或利润。
+免费在线运营游戏,获得玩家反馈、在线参与和持续传播,评论数、好评率、推荐数、peak_ccu，而不是销售收入,"免费游戏内部可关注反馈和在线表现较强的标签方向，例如：Idler, Moddable, Hentai, MMORPG, Mature, Online Co-Op, Trading, Co-op。",免费游戏的 estimated_owners 更像触达或入库规模，不能解释为销量收入。

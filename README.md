@@ -99,6 +99,7 @@ notebooks/04_steam_market_structure_analysis.ipynb
 notebooks/05_steam_reviews_popularity_analysis.ipynb
 notebooks/06_steam_tag_genre_positioning_analysis.ipynb
 notebooks/07_report_synthesis.ipynb
+notebooks/08_sales_proxy_publishing_strategy.ipynb
 ```
 
 各 Notebook 的作用如下：
@@ -112,6 +113,7 @@ notebooks/07_report_synthesis.ipynb
 | 05 | 玩家反馈与热度分析，包括评论数、好评率、推荐数、峰值在线、价格和平台关系 |
 | 06 | 标签、类型和市场定位分析，包括标签竞争、共现关系和高反馈细分方向 |
 | 07 | 报告综合整理，汇总方法、发现、局限性和后续方向 |
+| 08 | 使用 `estimated_owners` 构造销量代理指标，补充面向发行方的简单策略分析 |
 
 启动 Jupyter：
 
@@ -121,8 +123,8 @@ jupyter notebook
 
 项目已生成：
 
-- 7 个主线 Notebook；
-- 38 张分析图表，保存在 `figures/`；
+- 8 个主线 Notebook；
+- 45 张分析图表，保存在 `figures/`；
 - 多个小型 summary CSV，保存在 `data/processed/`；
 - 报告汇总文件 `reports/final_report_summary.md`；
 - 中文 LaTeX 报告模板 `reports/latex/main.tex`；
