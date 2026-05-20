@@ -6,10 +6,6 @@
 
 项目并不是一个完整软件系统，而是一个以 Jupyter Notebook 为主线的数据分析项目。整体流程参考 Kaggle 数据分析 Notebook 的形式：先说明问题，再运行代码，展示表格或图表，最后给出解释和阶段性结论。
 
-更完整的项目背景、Notebook 设计原则、后续 Agent 协作注意事项见：
-
-[reports/project_brief.md](reports/project_brief.md)
-
 ## 研究问题
 
 本项目主要回答两个问题：
@@ -123,8 +119,6 @@ notebooks/07_report_synthesis.ipynb
 jupyter notebook
 ```
 
-## 当前输出
-
 项目已生成：
 
 - 7 个主线 Notebook；
@@ -136,42 +130,8 @@ jupyter notebook
 
 较大的 Parquet 中间文件不会提交到 GitHub，可通过重新运行 Notebook 02 和 Notebook 03 生成。
 
-## LaTeX 报告
+------
 
-课程报告使用中文 LaTeX 编写，主文件为：
+更完整的项目背景、Notebook 设计原则、数据提交规则、LaTeX 报告配置和后续 Agent 协作注意事项见：
 
-```text
-reports/latex/main.tex
-```
-
-本地使用 `tectonic` 编译：
-
-```bash
-tectonic --synctex --keep-logs --keep-intermediates --outdir reports/latex_build reports/latex/main.tex
-```
-
-VS Code 中已配置 LaTeX Workshop 使用 `tectonic` 保存自动编译。报告模板包含封面、摘要、目录、章节大纲、图表示例、参考资料和附录。
-
-## 数据与 GitHub 提交说明
-
-以下内容不应提交到 GitHub：
-
-- `data/raw/archive/` 下的原始 Kaggle CSV；
-- 下载得到的压缩包；
-- `data/processed/` 下的 Parquet 文件；
-- LaTeX 编译中间文件。
-
-以下内容可以提交：
-
-- Notebook；
-- README 和项目说明文档；
-- 小型 summary CSV；
-- 生成的 PNG 图表；
-- LaTeX 源文件；
-- 最终需要提交的 PDF 报告。
-
-这样可以保持仓库体积较小，同时保证项目流程可复现。
-
-## 后续方向
-
-当前主线分析已经完成。后续可以在报告之外继续扩展一个简单的 Steam 游戏相似推荐功能，例如基于标签、类型、类别和简介文本计算相似度，输入一个游戏名称后返回相似游戏。该扩展不属于当前 Notebook 主线分析的一部分。
+[reports/project_brief.md](reports/project_brief.md)
