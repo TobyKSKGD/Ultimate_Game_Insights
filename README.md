@@ -1,56 +1,37 @@
 # Ultimate_Game_Insights
 
-This repository is a personal final project for a Big Data Processing and Analysis course. The project uses Steam Games Dataset 2025 as a large tabular data case study.
-
-The project goal is to transform large-scale Steam game tables into decision-oriented insights about market structure, player feedback, popularity, and platform ecosystem changes.
-
-Current report theme:
-
-**SteamScope: Large-scale Steam Game Market and Popularity Analysis**
-
-Recommended Chinese title:
-
 **基于大规模 Steam 游戏数据的市场结构、玩家反馈与平台生态变化分析**
 
-The project name remains **Ultimate_Game_Insights**. SteamScope is the report theme and notebook storyline, not the repository/project rename.
+本仓库是“大数据处理技术”课程的个人项目。项目使用 Kaggle 上的 **Steam Games Dataset 2025**，围绕 Steam 游戏市场结构、玩家反馈、热度指标和平台生态变化进行分析。
 
-For the full project memory, research framing, reference-paper takeaways, notebook storyline, and implementation rules, read:
+项目并不是一个完整软件系统，而是一个以 Jupyter Notebook 为主线的数据分析项目。整体流程参考 Kaggle 数据分析 Notebook 的形式：先说明问题，再运行代码，展示表格或图表，最后给出解释和阶段性结论。
 
-[`reports/project_brief.md`](reports/project_brief.md)
+更完整的项目背景、Notebook 设计原则、后续 Agent 协作注意事项见：
 
-## Project Vision
+[reports/project_brief.md](reports/project_brief.md)
 
-The project should show that a medium-to-large real-world tabular dataset can be processed step by step with a clear and verifiable workflow.
+## 研究问题
 
-The Steam dataset is suitable for the course because it contains multiple CSV files totaling about 1.7GB, long text columns, mixed data types, multi-label fields, time fields, review metrics, popularity indicators, and platform information.
+本项目主要回答两个问题：
 
-Core research questions:
+1. 在 Steam 平台上，什么样的游戏更容易获得玩家关注？
+2. 从 2024 年 5 月到 2025 年 3 月，Steam 游戏市场在数量、类型、玩家反馈和平台生态方面发生了哪些变化？
 
-1. What kinds of Steam games are more likely to gain player attention?
-2. How did the Steam game market change between the May 2024 and March 2025 dataset snapshots?
+项目同时展示大规模表格数据处理能力，包括大 CSV 文件读取、字段理解、数据清洗、特征工程、Parquet 转换、工具性能对比和可视化分析。
 
-Course alignment:
+## 数据集
 
-- Chapter 2: use AI agents and vibe coding responsibly, while keeping code runnable and results verifiable.
-- Chapter 3: follow a complete data analysis framework and explicitly recognize data types.
-- Chapter 4: focus on large-scale tabular data processing tools, including reading, filtering, aggregation, memory use, and performance comparison.
-- Chapter 5: analyze time-related fields such as `release_date` and version snapshots from 2024 and 2025.
+数据来源：
 
-Important rule for future assistants: this is primarily a notebook-based data analysis project, not a full software system. Keep notebooks focused, reproducible, and report-ready. Do not over-engineer the project.
+- Kaggle: [Steam Games Dataset 2025](https://www.kaggle.com/datasets/artermiloff/steam-games-dataset)
 
-## Dataset
-
-Dataset source: Steam Games Dataset 2025
-
-Kaggle link: <https://www.kaggle.com/datasets/artermiloff/steam-games-dataset>
-
-The dataset is too large to upload to GitHub. The raw files should be downloaded locally and stored under:
+数据下载后应放在本地目录：
 
 ```text
 data/raw/archive/
 ```
 
-After downloading and extracting the Kaggle archive, the expected structure is:
+解压后的预期文件结构如下：
 
 ```text
 data/raw/archive/
@@ -60,300 +41,59 @@ data/raw/archive/
 └── games_may2024_full.csv
 ```
 
-Current local file sizes:
+原始 CSV 文件总大小约 1.7GB，不适合直接提交到 GitHub。仓库中保留下载说明和分析代码，原始数据需要在本地重新下载。
 
-- `games_march2025_cleaned.csv`: about 447MB
-- `games_march2025_full.csv`: about 450MB
-- `games_may2024_cleaned.csv`: about 403MB
-- `games_may2024_full.csv`: about 405MB
+Notebook 01 中包含 KaggleHub 和 Kaggle CLI 的下载示例代码。为避免每次运行都重复下载，相关代码默认保持注释状态。
 
-Approximate row counts:
-
-- `games_march2025_cleaned.csv`: 89,619 rows
-- `games_march2025_full.csv`: 94,949 rows
-- `games_may2024_cleaned.csv`: 83,647 rows
-- `games_may2024_full.csv`: 87,807 rows
-
-Key columns include:
-
-- Basic game fields: `appid`, `name`, `release_date`
-- Platform fields: `windows`, `mac`, `linux`
-- Price and package fields: `price`, `discount`, `dlc_count`, `packages`
-- Review and rating fields: `positive`, `negative`, `user_score`, `metacritic_score`, `pct_pos_total`, `num_reviews_total`, `pct_pos_recent`, `num_reviews_recent`
-- Popularity fields: `recommendations`, `peak_ccu`
-- Playtime fields: `average_playtime_forever`, `average_playtime_2weeks`, `median_playtime_forever`, `median_playtime_2weeks`
-- Multi-label fields: `genres`, `categories`, `tags`, `developers`, `publishers`, `supported_languages`, `full_audio_languages`
-- Text fields: `detailed_description`, `about_the_game`, `short_description`, `reviews`
-
-## Download Instructions
-
-The first notebook should include the download code as a commented reference cell. Do not run it every time, because the data is large.
-
-Recommended KaggleHub reference code:
-
-```python
-# Optional one-time download. Keep this commented unless the dataset is missing.
-# import kagglehub
-# from pathlib import Path
-# import shutil
-#
-# dataset_path = kagglehub.dataset_download("artermiloff/steam-games-dataset")
-# target_dir = Path("data/raw/archive")
-# target_dir.mkdir(parents=True, exist_ok=True)
-#
-# # Copy downloaded CSV files into the project data folder.
-# for csv_file in Path(dataset_path).glob("*.csv"):
-#     shutil.copy2(csv_file, target_dir / csv_file.name)
-#
-# print("Dataset copied to:", target_dir.resolve())
-```
-
-Alternative Kaggle CLI workflow:
-
-```bash
-# Optional one-time download. Run from the project root only if data is missing.
-# mkdir -p data/raw
-# kaggle datasets download -d artermiloff/steam-games-dataset -p data/raw
-# unzip data/raw/steam-games-dataset.zip -d data/raw/archive
-```
-
-Raw data files should not be committed to GitHub. Keep the Kaggle link and download instructions instead.
-
-## GitHub Data Policy
-
-Large raw and processed data files should not be committed to GitHub.
-
-Do not commit:
-
-- Raw Kaggle CSV files under `data/raw/archive/`
-- Downloaded dataset archives such as `.zip`, `.7z`, `.tar`, or `.tar.gz`
-- Generated Parquet files under `data/processed/`, including `data/processed/steam_march2025_features.parquet`
-
-These files are reproducible: raw data can be downloaded from Kaggle, and processed Parquet files can be regenerated by running the notebooks.
-
-Small derived outputs can be committed when useful for grading and review, for example:
-
-- summary CSV files under `data/processed/`
-- generated PNG figures under `figures/`
-- notebooks under `notebooks/`
-
-This keeps the repository lightweight while preserving enough results for the course report.
-
-## Notebook Plan
-
-The project follows a clean Steam dataset notebook storyline.
-
-Current progress:
-
-- `notebooks/01_steam_dataset_overview.ipynb`: completed. It verifies the dataset files, file sizes, row counts, column structures, sample rows, field groups, and core selected-column missing ratios.
-- `notebooks/02_large_table_processing_strategy.ipynb`: completed. It compares practical processing strategies with `pandas`, `duckdb`, and `polars`, creates selected-column Parquet data, and saves benchmark results.
-- `notebooks/03_steam_data_cleaning_and_features.ipynb`: completed and executed. It standardizes fields, checks missing values, duplicates, and abnormal ranges, converts date and numeric columns, handles Steam percentage sentinel values, creates analysis features, and saves a reusable feature dataset.
-- `notebooks/04_steam_market_structure_analysis.ipynb`: completed, refined, and executed. It analyzes Steam market structure through release trends, price/free-game structure, platform support, genres, categories, tags, developer/publisher long tails, and a light May 2024 vs March 2025 snapshot comparison. The free-vs-paid chart now uses a cleaner donut chart, and the final summary cell can recover required data if the notebook kernel is restarted.
-- `notebooks/05_steam_reviews_popularity_analysis.ipynb`: completed and executed. It analyzes player feedback and popularity through review counts, positive rates, recommendations, peak CCU, playtime, price buckets, platform count, genres, release timing, correlations, and a light May 2024 vs March 2025 feedback snapshot comparison.
-- `notebooks/06_steam_tag_genre_positioning_analysis.ipynb`: completed and executed. It analyzes tags, genres, categories, tag competition, high-feedback niches, genre-tag positioning, tag co-occurrence, Indie tag lift, and positioning features for a future similarity recommender.
-- `notebooks/07_report_synthesis.ipynb`: completed and executed. It synthesizes the full notebook sequence into a course-report narrative, covering methodology, dataset scale, large-table processing, cleaning, market structure, player feedback, tag positioning, limitations, and future recommender direction.
-
-Main notebook storyline status: completed from `01` through `07`.
-
-Current generated intermediate files:
-
-- `data/processed/large_table_processing_benchmark.csv`
-- `data/processed/steam_march2025_selected.parquet`
-- `data/processed/steam_march2025_yearly_summary.parquet`
-- `data/processed/steam_march2025_features.parquet`
-- `data/processed/steam_march2025_features_sample.csv`
-- `data/processed/steam_data_quality_report.csv`
-- `data/processed/steam_reviews_popularity_metric_summary.csv`
-- `data/processed/steam_reviews_popularity_price_summary.csv`
-- `data/processed/steam_reviews_popularity_platform_summary.csv`
-- `data/processed/steam_reviews_popularity_genre_summary.csv`
-- `data/processed/steam_reviews_popularity_correlation.csv`
-- `data/processed/steam_reviews_popularity_snapshot_summary.csv`
-- `data/processed/steam_reviews_popularity_top_attention_games.csv`
-- `data/processed/steam_tag_positioning_summary.csv`
-- `data/processed/steam_tag_niche_high_feedback_candidates.csv`
-- `data/processed/steam_tag_high_attention_summary.csv`
-- `data/processed/steam_genre_tag_matrix_top.csv`
-- `data/processed/steam_tag_cooccurrence_counts_top.csv`
-- `data/processed/steam_tag_cooccurrence_jaccard_top.csv`
-- `data/processed/steam_tag_cooccurrence_pairs_top.csv`
-- `data/processed/steam_indie_tag_lift_summary.csv`
-- `data/processed/steam_positioning_features_sample.csv`
-- `reports/final_report_summary.md`
-
-Current generated figures:
-
-- `figures/01_steam_dataset_file_size_and_rows.png`
-- `figures/02_core_columns_missing_ratio.png`
-- `figures/03_csv_vs_selected_parquet_size.png`
-- `figures/04_processing_time_by_tool_and_task.png`
-- `figures/05_memory_delta_by_tool_and_task.png`
-- `figures/06_key_feature_missing_ratio.png`
-- `figures/07_market_release_trend_by_year.png`
-- `figures/08_market_release_distribution_by_decade.png`
-- `figures/09_price_distribution_paid_games.png`
-- `figures/10_free_vs_paid_market_share.png`
-- `figures/11_platform_support_counts.png`
-- `figures/12_platform_combination_distribution.png`
-- `figures/13_top_genres_by_game_count.png`
-- `figures/14_top_categories_by_game_count.png`
-- `figures/15_top_tags_by_game_count.png`
-- `figures/16_top_developers_publishers_by_game_count.png`
-- `figures/17_developer_publisher_long_tail_cumulative_share.png`
-- `figures/18_snapshot_market_structure_comparison.png`
-- `figures/19_attention_metrics_log_distributions.png`
-- `figures/20_positive_rate_distribution_reliable_reviews.png`
-- `figures/21_review_count_vs_positive_rate.png`
-- `figures/22_popularity_proxy_relationships.png`
-- `figures/23_price_bucket_feedback_popularity.png`
-- `figures/24_free_paid_attention_metrics.png`
-- `figures/25_platform_count_feedback_popularity.png`
-- `figures/26_genre_feedback_popularity_comparison.png`
-- `figures/27_release_year_feedback_trends.png`
-- `figures/28_game_age_vs_review_count.png`
-- `figures/29_feedback_popularity_correlation_heatmap.png`
-- `figures/30_snapshot_feedback_popularity_comparison.png`
-- `figures/31_tag_genre_category_frequency.png`
-- `figures/32_tag_competition_vs_positive_feedback.png`
-- `figures/33_niche_high_feedback_tags.png`
-- `figures/34_genre_tag_positioning_heatmap.png`
-- `figures/35_tag_cooccurrence_jaccard_heatmap.png`
-- `figures/36_indie_tag_lift.png`
-- `figures/37_tag_count_positioning_complexity.png`
-- `figures/38_report_notebook_workflow.png`
-
-Main notebook sequence:
-
-1. `notebooks/01_steam_dataset_overview.ipynb`
-   - Introduce the Steam dataset.
-   - Verify expected files under `data/raw/archive/`.
-   - Show file sizes, row counts, columns, sample rows, and data types.
-   - Explain why large CSV files require careful reading strategies.
-   - Include commented download instructions.
-
-2. `notebooks/02_large_table_processing_strategy.ipynb`
-   - Compare practical large-table processing strategies.
-   - Focus on `pandas`, `duckdb`, and `polars`.
-   - Use `pyarrow` for Parquet conversion where useful.
-   - Compare selected-column loading, filtering, groupby aggregation, memory use, and CSV vs Parquet strategy.
-   - Keep tool comparison useful but not larger than the Steam market analysis itself.
-
-3. `notebooks/03_steam_data_cleaning_and_features.ipynb`
-   - Standardize column names such as `AppID` vs `appid`.
-   - Check missing values, duplicates, abnormal values, and date parsing.
-   - Clean numeric fields such as price, reviews, playtime, and peak CCU.
-   - Create features such as game age, free/paid flag, platform count, review count, positive-rate features, text length, genre count, tag count, and language count.
-   - Process multi-label fields such as `genres`, `categories`, `tags`, `developers`, and `publishers`.
-   - Save feature data to `data/processed/`.
-   - Current output: `data/processed/steam_march2025_features.parquet`, with 89,618 rows and 63 columns.
-
-4. `notebooks/04_steam_market_structure_analysis.ipynb`
-   - Analyze Steam game market structure.
-   - Study price distribution, free vs paid games, platform support, genres, tags, developers, publishers, and review volume.
-   - Current status: completed and executed.
-   - Current findings: the feature dataset contains 89,618 games; the strongest release concentration appears in 2024; free games account for about 15.80%; multi-platform games account for about 23.05%; `Indie`, `Single-player`, and `Indie` are the top genre/category/tag signals by game count; developer and publisher structures show clear long-tail patterns.
-   - Snapshot note: the May 2024 cleaned snapshot has 83,646 unique AppIDs, while the March 2025 cleaned snapshot has 89,618 unique AppIDs.
-   - Refinement note: the free-vs-paid comparison is shown as a donut chart with counts and shares in the legend, and the final summary cell is robust to kernel restarts.
-
-5. `notebooks/05_steam_reviews_popularity_analysis.ipynb`
-   - Analyze review metrics, positive rates, recommendations, peak CCU, playtime, and release-year trends.
-   - Compare May 2024 and March 2025 snapshots where useful.
-   - Current status: completed and executed.
-   - Current findings: 72,563 games have at least one review, while 33,358 games have 30 or more reviews; review counts are highly long-tailed, with a median of 13 and a mean of about 1,479.70; the median positive rate among games with 30+ reviews is about 81.08%; May 2024 to March 2025 total review count increased from 124,126,364 to 132,607,623.
-
-6. `notebooks/06_steam_tag_genre_positioning_analysis.ipynb`
-   - Analyze Steam tags and genres as market-positioning signals.
-   - Study tag frequency, tag co-occurrence, competition, and high-feedback tag groups.
-   - Connect tag/genre structure to future similarity recommendation ideas.
-   - Current status: completed and executed.
-   - Current findings: the dataset contains 33 genres, 40 categories, and 452 tags; games have about 11.26 tags on average; `Indie`, `Single-player`, and `Indie` are the top genre/category/tag by coverage; `Sokoban` appears as a low-competition high-feedback tag candidate; `Indie + Singleplayer` is one of the strongest top-tag co-occurrence pairs; `Short` is relatively over-represented in Indie-positioned games.
-
-7. `notebooks/07_report_synthesis.ipynb`
-   - Summarize methodology, processing strategy, cleaning workflow, feature engineering, major findings, limitations, and future work.
-   - This notebook should be Markdown-heavy and suitable for course report writing.
-   - Current status: completed and executed.
-   - Current output: `reports/final_report_summary.md` and `figures/38_report_notebook_workflow.png`.
-
-Optional final extension outside the main notebook storyline:
-
-- Build a simple Steam game similarity recommender using tags, genres, categories, and descriptions.
-- This should be implemented later as a script or small app, not as part of the core big-data analysis notebooks.
-
-## Notebook Style Guidelines
-
-- All notebook Markdown explanations, analysis comments, and conclusions should be written in Chinese.
-- Figure titles and axis labels may stay in English to avoid Chinese font rendering issues in Matplotlib.
-- Each major step should follow the Kaggle-style pattern: Chinese Markdown explanation, Python code, visible table/figure output, and Chinese interpretation.
-- Keep notebooks focused and incremental. Do not put all analysis into one huge notebook.
-- Save generated figures to `figures/`.
-- Save reusable processed datasets to `data/processed/`.
-- Do not run large downloads automatically inside notebooks; keep download code commented.
-- Do not commit raw CSV files or downloaded Kaggle archives.
-- Do not build the final recommendation system until the analysis notebooks are complete.
-
-## Project Structure
+## 项目结构
 
 ```text
 Ultimate_Game_Insights/
 ├── data/
-│   ├── raw/
-│   │   └── archive/
-│   └── processed/
-├── notebooks/
-├── figures/
-├── scripts/
+│   ├── raw/                 # 原始数据，本地保存，不提交大文件
+│   └── processed/           # 小型汇总结果和可再生中间数据
+├── figures/                 # Notebook 生成的图表
+├── notebooks/               # 主要数据分析流程
 ├── reports/
-├── README.md
+│   ├── latex/               # 中文课程报告 LaTeX 源文件
+│   ├── latex_build/         # LaTeX 编译输出
+│   ├── references/          # 参考论文
+│   └── project_brief.md     # 项目上下文和协作说明
 ├── requirements.txt
+├── README.md
 └── .gitignore
 ```
 
-## Environment Setup
+## 环境配置
 
-Create and activate a virtual environment on macOS / Linux:
+建议在 macOS 或 Linux 下使用 Python 虚拟环境。
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
-```
-
-Install project dependencies:
-
-```bash
 pip install -r requirements.txt
 ```
 
-If you install or remove Python packages later, update the dependency file:
+如果后续新增或删除 Python 依赖，请重新生成依赖文件：
 
 ```bash
 pip freeze > requirements.txt
 ```
 
-## Core Dependencies
+主要依赖包括：
 
-The Steam version of this project uses:
+- `pandas`, `numpy`: 基础表格处理与数值计算
+- `matplotlib`, `seaborn`: 可视化
+- `duckdb`, `polars`, `pyarrow`: 大表读取、查询和 Parquet 支持
+- `psutil`: 性能和内存测量
+- `jupyter`, `notebook`, `ipykernel`: Notebook 运行环境
+- `scikit-learn`: 后续特征缩放、聚类或相似度实验的基础依赖
+- `kagglehub`: 可选的数据下载辅助工具
 
-- `pandas`, `numpy`: baseline data analysis
-- `matplotlib`, `seaborn`: visualization
-- `scikit-learn`: later feature scaling, PCA, clustering, and possible similarity experiments
-- `jupyter`, `notebook`, `ipykernel`: notebook workflow
-- `polars`: high-performance DataFrame processing
-- `duckdb`: SQL-based analytics over large CSV/Parquet files
-- `dask[dataframe]`: chunked/distributed-style DataFrame processing
-- `pyarrow`: columnar data and Parquet support
-- `psutil`: memory and CPU measurement for benchmarks
-- `kagglehub`: optional Kaggle dataset download helper
+## Notebook 流程
 
-## Run Notebooks
-
-Start Jupyter Notebook from the project root:
-
-```bash
-jupyter notebook
-```
-
-Then follow the new Steam notebook sequence:
+按顺序运行以下 Notebook：
 
 ```text
 notebooks/01_steam_dataset_overview.ipynb
@@ -364,3 +104,74 @@ notebooks/05_steam_reviews_popularity_analysis.ipynb
 notebooks/06_steam_tag_genre_positioning_analysis.ipynb
 notebooks/07_report_synthesis.ipynb
 ```
+
+各 Notebook 的作用如下：
+
+| Notebook | 内容 |
+| --- | --- |
+| 01 | 数据集介绍、文件规模、字段结构、缺失情况和主分析文件选择 |
+| 02 | `pandas`、`duckdb`、`polars` 的大表处理策略对比，并将常用字段转为 Parquet |
+| 03 | 数据清洗、字段统一、异常值检查、多标签处理和基础特征工程 |
+| 04 | Steam 市场结构分析，包括发行趋势、价格、平台、类型、标签和开发商/发行商长尾 |
+| 05 | 玩家反馈与热度分析，包括评论数、好评率、推荐数、峰值在线、价格和平台关系 |
+| 06 | 标签、类型和市场定位分析，包括标签竞争、共现关系和高反馈细分方向 |
+| 07 | 报告综合整理，汇总方法、发现、局限性和后续方向 |
+
+启动 Jupyter：
+
+```bash
+jupyter notebook
+```
+
+## 当前输出
+
+项目已生成：
+
+- 7 个主线 Notebook；
+- 38 张分析图表，保存在 `figures/`；
+- 多个小型 summary CSV，保存在 `data/processed/`；
+- 报告汇总文件 `reports/final_report_summary.md`；
+- 中文 LaTeX 报告模板 `reports/latex/main.tex`；
+- 编译后的 PDF 报告草稿 `reports/latex_build/main.pdf`。
+
+较大的 Parquet 中间文件不会提交到 GitHub，可通过重新运行 Notebook 02 和 Notebook 03 生成。
+
+## LaTeX 报告
+
+课程报告使用中文 LaTeX 编写，主文件为：
+
+```text
+reports/latex/main.tex
+```
+
+本地使用 `tectonic` 编译：
+
+```bash
+tectonic --synctex --keep-logs --keep-intermediates --outdir reports/latex_build reports/latex/main.tex
+```
+
+VS Code 中已配置 LaTeX Workshop 使用 `tectonic` 保存自动编译。报告模板包含封面、摘要、目录、章节大纲、图表示例、参考资料和附录。
+
+## 数据与 GitHub 提交说明
+
+以下内容不应提交到 GitHub：
+
+- `data/raw/archive/` 下的原始 Kaggle CSV；
+- 下载得到的压缩包；
+- `data/processed/` 下的 Parquet 文件；
+- LaTeX 编译中间文件。
+
+以下内容可以提交：
+
+- Notebook；
+- README 和项目说明文档；
+- 小型 summary CSV；
+- 生成的 PNG 图表；
+- LaTeX 源文件；
+- 最终需要提交的 PDF 报告。
+
+这样可以保持仓库体积较小，同时保证项目流程可复现。
+
+## 后续方向
+
+当前主线分析已经完成。后续可以在报告之外继续扩展一个简单的 Steam 游戏相似推荐功能，例如基于标签、类型、类别和简介文本计算相似度，输入一个游戏名称后返回相似游戏。该扩展不属于当前 Notebook 主线分析的一部分。

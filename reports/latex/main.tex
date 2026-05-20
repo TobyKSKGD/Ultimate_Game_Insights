@@ -1,0 +1,370 @@
+\documentclass[UTF8,a4paper,12pt,fontset=fandol]{ctexart}
+
+% =========================
+% Basic layout and packages
+% =========================
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{amsmath}
+
+\geometry{left=2.8cm,right=2.8cm,top=2.6cm,bottom=2.6cm}
+\linespread{1.35}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.2em}
+\setlist{nosep,leftmargin=2.4em}
+
+% =========================
+% Colors and link style
+% =========================
+\definecolor{SUFEBlue}{HTML}{1F4E79}
+\definecolor{LightGray}{HTML}{F4F6F8}
+\definecolor{MidGray}{HTML}{666666}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=SUFEBlue,
+  urlcolor=SUFEBlue,
+  citecolor=SUFEBlue,
+  hypertexnames=false,
+  pdfauthor={张思拓},
+  pdftitle={基于大规模 Steam 游戏数据的市场结构、玩家反馈与平台生态变化分析}
+}
+
+% =========================
+% Heading style
+% =========================
+\ctexset{
+  section = {
+    format = \heiti\zihao{3}\bfseries\color{SUFEBlue},
+    beforeskip = 1.4em,
+    afterskip = 0.8em
+  },
+  subsection = {
+    format = \heiti\zihao{4}\bfseries,
+    beforeskip = 1.0em,
+    afterskip = 0.5em
+  },
+  subsubsection = {
+    format = \heiti\zihao{-4}\bfseries,
+    beforeskip = 0.8em,
+    afterskip = 0.4em
+  }
+}
+
+% =========================
+% Header and footer
+% =========================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small 《大数据处理技术》课程实践报告}
+\fancyhead[R]{\small Ultimate\_Game\_Insights}
+\fancyfoot[C]{\small \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% =========================
+% Reusable placeholder box
+% =========================
+\newcommand{\placeholder}[1]{%
+  \par\vspace{0.3em}
+  \noindent\fcolorbox{gray!45}{LightGray}{%
+    \begin{minipage}{0.94\linewidth}
+      \small\color{MidGray}#1
+    \end{minipage}
+  }
+  \par\vspace{0.7em}
+}
+
+\newcommand{\covertopic}[1]{%
+  {\zihao{4}\begin{minipage}{12.2cm}\centering #1\end{minipage}\par}
+  \vspace{0.95cm}
+}
+
+\newcommand{\coveritem}[2]{%
+  {\zihao{3}#1：#2\par}
+  \vspace{0.75cm}
+}
+
+% =========================
+% Document metadata
+% =========================
+\newcommand{\reporttitle}{基于大规模 Steam 游戏数据的市场结构、玩家反馈与平台生态变化分析}
+\newcommand{\studentname}{张思拓}
+\newcommand{\studentid}{2025134009}
+\newcommand{\projectname}{Ultimate\_Game\_Insights}
+
+\begin{document}
+
+% =========================
+% Cover page
+% =========================
+\begin{titlepage}
+  \thispagestyle{empty}
+  \centering
+
+  \vspace*{1.05cm}
+  {\fontsize{32pt}{38pt}\selectfont\heiti 上海财经大学\par}
+
+  \vspace{1.05cm}
+  {\fontsize{26pt}{32pt}\selectfont\heiti 《大数据处理技术》课程实践报告\par}
+
+  \vspace{3.0cm}
+  \begin{center}
+    \begin{minipage}{13.2cm}
+      \centering
+      \covertopic{\reporttitle}
+      \coveritem{姓名}{\studentname}
+      \coveritem{学号}{\studentid}
+    \end{minipage}
+  \end{center}
+
+  \vfill
+  {\zihao{4} \today\par}
+\end{titlepage}
+
+% =========================
+% Abstract
+% =========================
+\pagenumbering{Roman}
+\setcounter{page}{1}
+
+\begin{center}
+  {\heiti\zihao{3} 摘要}
+\end{center}
+
+\placeholder{在这里用 200--300 字概括报告内容。建议包括：数据来源、数据规模、使用的方法、核心分析方向、最重要的发现。请用你自己的话写核心观点。}
+
+\noindent\textbf{关键词：} 大数据处理；Steam 游戏；市场结构；玩家反馈；标签分析；可视化分析
+
+\newpage
+
+% =========================
+% Table of contents
+% =========================
+\tableofcontents
+\newpage
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% =========================
+% Main body
+% =========================
+\section{问题背景与研究目标}
+
+\subsection{现实背景}
+\placeholder{说明为什么选择 Steam 游戏数据作为“大数据处理技术”课程项目。可以写：Steam 是重要的数字游戏发行平台，游戏数量多、字段复杂、玩家反馈丰富，适合做大规模表格数据分析。}
+
+\subsection{研究问题}
+\placeholder{写清楚报告围绕哪些问题展开。建议保留两个核心问题：什么样的 Steam 游戏更容易获得玩家关注；Steam 游戏市场在 2024 到 2025 之间发生了什么变化。}
+
+\subsection{研究目标与技术路线}
+\placeholder{说明你希望通过什么步骤回答问题。可以概括 Notebook 主线：数据理解、大表处理工具对比、数据清洗、特征工程、市场结构分析、玩家反馈分析、标签定位分析和报告综合。}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\textwidth]{../../figures/38_report_notebook_workflow.png}
+  \caption{Notebook 分析流程}
+  \label{fig:notebook-workflow}
+\end{figure}
+
+\section{数据来源与字段说明}
+
+\subsection{数据集来源}
+\placeholder{介绍 Kaggle Steam Games Dataset 2025。写明原始数据来自 Kaggle，本地解压后位于 data/raw/archive/，由于文件较大不上传 GitHub。}
+
+\subsection{数据规模}
+\placeholder{说明原始 CSV 总量约 1.7GB，包含 2024 和 2025 两个快照。可以列出主分析文件 games\_march2025\_cleaned.csv，以及快照对比文件 games\_may2024\_cleaned.csv。}
+
+\begin{table}[H]
+  \centering
+  \caption{主要数据文件说明}
+  \begin{tabularx}{0.95\textwidth}{lrrX}
+    \toprule
+    文件名 & 约文件大小 & 约行数 & 用途 \\
+    \midrule
+    games\_march2025\_cleaned.csv & 447MB & 89,619 & 主分析文件 \\
+    games\_march2025\_full.csv & 450MB & 94,949 & 2025 完整字段文件 \\
+    games\_may2024\_cleaned.csv & 403MB & 83,647 & 快照对比文件 \\
+    games\_may2024\_full.csv & 405MB & 87,807 & 2024 完整字段文件 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\subsection{字段类型}
+\placeholder{说明字段类型包括数值型、类别型、时间型、多标签型和文本型。这里可以结合课程中“表格数据分析”的字段类型识别思想。}
+
+\section{大规模表格数据处理方法}
+
+\subsection{读取风险与处理策略}
+\placeholder{说明为什么不能简单反复读取完整 CSV：文件大、字段多、文本列长、内存开销高。写明项目采用选择列读取、抽样检查、CSV 转 Parquet 等策略。}
+
+\subsection{工具对比}
+\placeholder{总结 pandas、duckdb、polars 的角色。pandas 适合熟悉的数据分析与展示；duckdb 适合 SQL 式查询；polars 适合高性能 DataFrame 处理；pyarrow/Parquet 适合列式存储。}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{../../figures/04_processing_time_by_tool_and_task.png}
+  \caption{不同工具处理时间对比}
+  \label{fig:tool-time}
+\end{figure}
+
+\subsection{最终处理方案}
+\placeholder{写明最终策略：保留原始 CSV；清洗后生成可再生 Parquet；GitHub 不提交大型数据文件；提交 Notebook、图表和小型 summary CSV。}
+
+\section{数据清洗与特征工程}
+
+\subsection{数据质量检查}
+\placeholder{说明检查了缺失值、重复值、异常范围。特别说明 pct\_pos\_total 和 pct\_pos\_recent 中的 -1 是不可用值，不应该当作真实百分比。}
+
+\subsection{基础预处理}
+\placeholder{说明 release\_date 转换为日期，构造 release\_year；数值字段转换；多标签字段解析；保留原始字段并新增辅助字段。}
+
+\subsection{特征工程}
+\placeholder{列出主要特征：game\_age\_years、is\_free、platform\_count、review\_count\_calc、positive\_rate\_calc、genres\_count、tags\_count、description length、log 热度指标等。}
+
+\section{Steam 游戏市场结构分析}
+
+\subsection{发行年份趋势}
+\placeholder{根据 Notebook 04，用自己的话解释发行年份分布。可以写 2024 年是数据集中发行数量最高的年份，说明近年 Steam 游戏供给扩张明显。}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.88\textwidth]{../../figures/07_market_release_trend_by_year.png}
+  \caption{Steam 游戏发行年份趋势}
+  \label{fig:release-trend}
+\end{figure}
+
+\subsection{价格结构与免费游戏比例}
+\placeholder{说明免费游戏约占 15.80\%，付费游戏仍占多数。可以讨论免费游戏降低进入门槛，但不能直接说明免费导致更高热度。}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.72\textwidth]{../../figures/10_free_vs_paid_market_share.png}
+  \caption{免费游戏与付费游戏占比}
+  \label{fig:free-paid}
+\end{figure}
+
+\subsection{平台支持与开发者长尾}
+\placeholder{说明 Windows 支持是基础结构，多平台游戏约占 23.05\%。同时开发商和发行商分布具有长尾特征，说明 Steam 市场由头部主体和大量中小主体共同构成。}
+
+\section{玩家反馈与热度分析}
+
+\subsection{评论数量的长尾分布}
+\placeholder{写明评论数量高度长尾。当前数据中 72,563 款游戏至少有一条评论，33,358 款游戏达到 30 条及以上评论。评论数中位数为 13，均值约 1,479.70。}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{../../figures/19_attention_metrics_log_distributions.png}
+  \caption{玩家关注指标的 log 分布}
+  \label{fig:attention-dist}
+\end{figure}
+
+\subsection{好评率与评论数量门槛}
+\placeholder{说明好评率需要结合评论数理解。评论数很少时好评率不稳定，因此分析中使用 30 条评论作为较稳健门槛。}
+
+\subsection{推荐数、峰值在线与游玩时长}
+\placeholder{说明推荐数、峰值在线和游玩时长都是热度或参与度指标，但含义不同。总结它们与评论数之间的相关关系，但注意不要写成因果关系。}
+
+\subsection{价格、平台与热度关系}
+\placeholder{根据 Notebook 05 结果，讨论价格区间、免费/付费、多平台属性与热度指标的关系。强调这是描述性观察，不证明因果。}
+
+\section{标签、类型与市场定位分析}
+
+\subsection{标签体系的基本结构}
+\placeholder{说明数据中解析出 33 个类型、40 个分类和 452 个标签，平均每款游戏约 11.26 个标签。标签比类型更细，更适合描述市场定位。}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{../../figures/31_tag_genre_category_frequency.png}
+  \caption{类型、分类与标签频次}
+  \label{fig:tag-frequency}
+\end{figure}
+
+\subsection{标签竞争度与反馈表现}
+\placeholder{解释横轴“标签覆盖游戏数量”可以作为竞争度代理，纵轴好评率反映反馈倾向。可以讨论高频标签不一定好评更高，低竞争高反馈标签值得进一步关注。}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.88\textwidth]{../../figures/32_tag_competition_vs_positive_feedback.png}
+  \caption{标签竞争度与好评率}
+  \label{fig:tag-competition}
+\end{figure}
+
+\subsection{标签共现与类型定位}
+\placeholder{说明标签经常组合出现，例如 Indie + Singleplayer 是较强共现组合之一。genre-tag 矩阵可以帮助理解粗类型和细标签之间的关系。}
+
+\subsection{独立游戏子市场}
+\placeholder{说明 Indie 是最常见的市场定位之一，但 Indie 内部还可以继续拆分。Notebook 06 中 Short 在 Indie 定位游戏中相对更突出。}
+
+\section{综合结论}
+
+\subsection{对研究问题的回答}
+\placeholder{用你自己的话回答两个核心研究问题。建议分两段：第一段回答“哪些游戏更容易获得关注”；第二段回答“2024 到 2025 的变化”。这里是报告最核心部分，请尽量自己写。}
+
+\subsection{主要发现}
+\placeholder{用 3--5 条总结最重要发现。建议覆盖：市场扩张、长尾结构、评论/热度长尾、标签定位价值、快照变化。}
+
+\subsection{管理或实践启示}
+\placeholder{如果想让报告更像“分析报告”，可以写一点实践启示：例如开发者需要关注定位差异，不能只追逐高频标签；分析平台数据时要注意头部游戏对平均值的影响。}
+
+\section{不足与改进方向}
+
+\subsection{当前不足}
+\placeholder{说明数据来自第三方 Kaggle；分析以描述性为主；不能证明因果；快照口径可能变化；标签不完全等于真实内容；大型数据文件不提交但可再生成。}
+
+\subsection{后续方向}
+\placeholder{说明后续可做 PCA、聚类、简单评分预测或相似游戏推荐系统。推荐系统可以使用 tags、genres、categories 和文本描述计算相似度，再用评论数、好评率、热度指标进行过滤或排序。}
+
+\section{AI 辅助与程序说明}
+
+\subsection{AI 辅助说明}
+\placeholder{说明本项目允许使用 AI Agent / Vibe Coding。你可以写：AI 主要用于代码生成、调试、LaTeX 环境配置和格式辅助；报告核心观点和最终解释由本人基于 Notebook 输出结果整理。}
+
+\subsection{程序与环境说明}
+\placeholder{写明 Python 环境、主要依赖包、Notebook 文件名、LaTeX 编译方式。可以引用 README 和 requirements.txt。}
+
+\begin{table}[H]
+  \centering
+  \caption{项目主要文件说明}
+  \begin{tabularx}{0.95\textwidth}{lX}
+    \toprule
+    文件或目录 & 说明 \\
+    \midrule
+    notebooks/01--07 & 数据分析主线 Notebook \\
+    data/raw/archive/ & 原始 Kaggle 数据，本地保存，不提交 GitHub \\
+    data/processed/ & 小型 summary CSV 和可再生中间数据 \\
+    figures/ & 报告图表输出 \\
+    reports/latex/main.tex & 本报告 LaTeX 源文件 \\
+    requirements.txt & Python 环境依赖 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\section*{参考资料}
+\addcontentsline{toc}{section}{参考资料}
+
+\begingroup
+\raggedright
+\begin{enumerate}[label={[\arabic*]},itemsep=0.35em]
+  \item Kaggle. Steam Games Dataset 2025. \url{https://www.kaggle.com/datasets/artermiloff/steam-games-dataset}
+  \item Predicting the Popularity of Games on Steam. 项目参考论文，见 reports/references/。
+  \item Data-Driven Classifications of Video Game Vocabulary. 项目参考论文，见 reports/references/。
+  \item Enhancing Game Review Sentiment Classification on Steam Platform with Attention-Based BiLSTM. 项目参考论文，见 reports/references/。
+  \item Category-based and Popularity-guided Video Game Recommendation / CPGRec+. 项目参考论文，见 reports/references/。
+\end{enumerate}
+\par
+\endgroup
+
+\end{document}
