@@ -8,7 +8,28 @@
       "Bash(npx skills *)",
       "Bash(claude plugins *)",
       "Bash(claude mcp *)",
-      "Bash(gh auth *)"
+      "Bash(gh auth *)",
+      "Bash(python3 -c \"import json; d=json.load\\(open\\('steam-scope/data/overview_stats.json'\\)\\); print\\(json.dumps\\(d, indent=2, ensure_ascii=False\\)\\)\")",
+      "Bash(python3 -c \"import json; d=json.load\\(open\\('steam-scope/data/chart_release_year.json'\\)\\); print\\('Release year records:', len\\(d\\)\\); print\\('First 3:', d[:3]\\); print\\('Last 3:', d[-3:]\\)\")",
+      "Bash(python3 -c \"import json; d=json.load\\(open\\('steam-scope/data/graph_stats.json'\\)\\); print\\(json.dumps\\(d, indent=2, ensure_ascii=False\\)\\)\")",
+      "Bash(python3 -m http.server 8000)",
+      "mcp__chrome-devtools__wait_for",
+      "mcp__chrome-devtools__list_console_messages",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8000/)",
+      "mcp__chrome-devtools__take_screenshot",
+      "mcp__chrome-devtools__get_console_message",
+      "mcp__chrome-devtools__list_network_requests",
+      "mcp__chrome-devtools__evaluate_script",
+      "mcp__chrome-devtools__fill",
+      "Bash(pkill -f \"python3 -m http.server 8000\")",
+      "Bash(chmod +x *)",
+      "Bash(bash /Users/situozhang/Documents/大数据处理技术/Ultimate_Game_Insights/steam-scope/start.sh)",
+      "WebFetch(domain:store.steampowered.com)",
+      "WebSearch",
+      "Bash(grep -n '#[0-9a-fA-F]\\\\{3,6\\\\}\\\\|rgba\\(' /Users/situozhang/Documents/大数据处理技术/Ultimate_Game_Insights/steam-scope/js/app.js)",
+      "Bash(grep *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8000/assets/favicon.svg)",
+      "Bash(git -C /Users/situozhang/Documents/大数据处理技术/Ultimate_Game_Insights remote -v)"
     ]
   }
 }

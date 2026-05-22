@@ -1,0 +1,15 @@
+{
+  "total_games": 89618,
+  "reviewed_games": 72563,
+  "reliable_review_games": 33358,
+  "free_games": 14160,
+  "paid_games": 75458,
+  "free_share_pct": 15.8,
+  "genre_count": 33,
+  "category_count": 40,
+  "tag_count": 452,
+  "top_release_year": 2024,
+  "top_release_year_games": 18282,
+  "median_positive_rate_reliable": 81.08,
+  "median_review_count_reliable": 151.0
+}

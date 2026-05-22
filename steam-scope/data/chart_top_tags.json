@@ -1,0 +1,302 @@
+[
+  {
+    "tag": "Indie",
+    "game_count": 43408,
+    "median_positive_rate": 80.66,
+    "median_review_count": 25.0
+  },
+  {
+    "tag": "Singleplayer",
+    "game_count": 42723,
+    "median_positive_rate": 83.54,
+    "median_review_count": 23.0
+  },
+  {
+    "tag": "Action",
+    "game_count": 34898,
+    "median_positive_rate": 79.9,
+    "median_review_count": 23.0
+  },
+  {
+    "tag": "Casual",
+    "game_count": 31832,
+    "median_positive_rate": 82.44,
+    "median_review_count": 19.0
+  },
+  {
+    "tag": "Adventure",
+    "game_count": 33420,
+    "median_positive_rate": 81.58,
+    "median_review_count": 28.0
+  },
+  {
+    "tag": "2D",
+    "game_count": 23643,
+    "median_positive_rate": 86.5,
+    "median_review_count": 20.0
+  },
+  {
+    "tag": "Simulation",
+    "game_count": 15663,
+    "median_positive_rate": 78.09,
+    "median_review_count": 36.0
+  },
+  {
+    "tag": "Strategy",
+    "game_count": 16127,
+    "median_positive_rate": 78.89,
+    "median_review_count": 29.0
+  },
+  {
+    "tag": "3D",
+    "game_count": 16217,
+    "median_positive_rate": 81.4,
+    "median_review_count": 15.0
+  },
+  {
+    "tag": "Puzzle",
+    "game_count": 14944,
+    "median_positive_rate": 85.62,
+    "median_review_count": 23.0
+  },
+  {
+    "tag": "Atmospheric",
+    "game_count": 13780,
+    "median_positive_rate": 83.33,
+    "median_review_count": 38.0
+  },
+  {
+    "tag": "RPG",
+    "game_count": 15300,
+    "median_positive_rate": 80.0,
+    "median_review_count": 38.0
+  },
+  {
+    "tag": "Colorful",
+    "game_count": 11833,
+    "median_positive_rate": 86.49,
+    "median_review_count": 17.0
+  },
+  {
+    "tag": "Pixel Graphics",
+    "game_count": 11815,
+    "median_positive_rate": 87.02,
+    "median_review_count": 21.0
+  },
+  {
+    "tag": "Story Rich",
+    "game_count": 11296,
+    "median_positive_rate": 85.88,
+    "median_review_count": 59.0
+  },
+  {
+    "tag": "Exploration",
+    "game_count": 11053,
+    "median_positive_rate": 82.69,
+    "median_review_count": 28.0
+  },
+  {
+    "tag": "Cute",
+    "game_count": 10607,
+    "median_positive_rate": 88.37,
+    "median_review_count": 26.0
+  },
+  {
+    "tag": "First-Person",
+    "game_count": 10444,
+    "median_positive_rate": 79.52,
+    "median_review_count": 29.0
+  },
+  {
+    "tag": "Arcade",
+    "game_count": 9866,
+    "median_positive_rate": 84.27,
+    "median_review_count": 15.0
+  },
+  {
+    "tag": "Fantasy",
+    "game_count": 11014,
+    "median_positive_rate": 83.11,
+    "median_review_count": 24.0
+  },
+  {
+    "tag": "Early Access",
+    "game_count": 9187,
+    "median_positive_rate": 76.83,
+    "median_review_count": 21.0
+  },
+  {
+    "tag": "Multiplayer",
+    "game_count": 10566,
+    "median_positive_rate": 78.38,
+    "median_review_count": 87.0
+  },
+  {
+    "tag": "Funny",
+    "game_count": 8440,
+    "median_positive_rate": 86.79,
+    "median_review_count": 37.0
+  },
+  {
+    "tag": "Horror",
+    "game_count": 10158,
+    "median_positive_rate": 82.08,
+    "median_review_count": 38.0
+  },
+  {
+    "tag": "Action-Adventure",
+    "game_count": 8036,
+    "median_positive_rate": 81.58,
+    "median_review_count": 16.0
+  },
+  {
+    "tag": "Retro",
+    "game_count": 7940,
+    "median_positive_rate": 86.6,
+    "median_review_count": 23.0
+  },
+  {
+    "tag": "Shooter",
+    "game_count": 9848,
+    "median_positive_rate": 80.71,
+    "median_review_count": 21.0
+  },
+  {
+    "tag": "Relaxing",
+    "game_count": 7646,
+    "median_positive_rate": 86.27,
+    "median_review_count": 20.0
+  },
+  {
+    "tag": "Platformer",
+    "game_count": 12460,
+    "median_positive_rate": 84.81,
+    "median_review_count": 16.0
+  },
+  {
+    "tag": "Family Friendly",
+    "game_count": 7589,
+    "median_positive_rate": 85.71,
+    "median_review_count": 22.0
+  },
+  {
+    "tag": "Sci-fi",
+    "game_count": 7211,
+    "median_positive_rate": 82.05,
+    "median_review_count": 27.0
+  },
+  {
+    "tag": "Anime",
+    "game_count": 7171,
+    "median_positive_rate": 85.37,
+    "median_review_count": 80.0
+  },
+  {
+    "tag": "Female Protagonist",
+    "game_count": 6474,
+    "median_positive_rate": 84.76,
+    "median_review_count": 65.0
+  },
+  {
+    "tag": "Combat",
+    "game_count": 9549,
+    "median_positive_rate": 82.46,
+    "median_review_count": 16.0
+  },
+  {
+    "tag": "Top-Down",
+    "game_count": 6994,
+    "median_positive_rate": 84.85,
+    "median_review_count": 14.5
+  },
+  {
+    "tag": "Controller",
+    "game_count": 6191,
+    "median_positive_rate": 86.06,
+    "median_review_count": 20.0
+  },
+  {
+    "tag": "Stylized",
+    "game_count": 5997,
+    "median_positive_rate": 86.84,
+    "median_review_count": 19.0
+  },
+  {
+    "tag": "Third Person",
+    "game_count": 5977,
+    "median_positive_rate": 80.0,
+    "median_review_count": 22.0
+  },
+  {
+    "tag": "Survival",
+    "game_count": 7615,
+    "median_positive_rate": 77.34,
+    "median_review_count": 31.0
+  },
+  {
+    "tag": "Difficult",
+    "game_count": 5580,
+    "median_positive_rate": 84.13,
+    "median_review_count": 50.0
+  },
+  {
+    "tag": "2D Platformer",
+    "game_count": 5382,
+    "median_positive_rate": 88.32,
+    "median_review_count": 12.0
+  },
+  {
+    "tag": "VR",
+    "game_count": 5341,
+    "median_positive_rate": 79.19,
+    "median_review_count": 18.0
+  },
+  {
+    "tag": "Mystery",
+    "game_count": 5803,
+    "median_positive_rate": 85.16,
+    "median_review_count": 26.0
+  },
+  {
+    "tag": "Open World",
+    "game_count": 5319,
+    "median_positive_rate": 77.59,
+    "median_review_count": 91.0
+  },
+  {
+    "tag": "Psychological Horror",
+    "game_count": 5191,
+    "median_positive_rate": 83.68,
+    "median_review_count": 46.0
+  },
+  {
+    "tag": "Cartoony",
+    "game_count": 5127,
+    "median_positive_rate": 86.84,
+    "median_review_count": 16.0
+  },
+  {
+    "tag": "Realistic",
+    "game_count": 5118,
+    "median_positive_rate": 76.67,
+    "median_review_count": 27.0
+  },
+  {
+    "tag": "Dark",
+    "game_count": 8473,
+    "median_positive_rate": 84.29,
+    "median_review_count": 28.0
+  },
+  {
+    "tag": "Comedy",
+    "game_count": 5526,
+    "median_positive_rate": 87.23,
+    "median_review_count": 40.0
+  },
+  {
+    "tag": "Visual Novel",
+    "game_count": 5050,
+    "median_positive_rate": 88.24,
+    "median_review_count": 51.0
+  }
+]

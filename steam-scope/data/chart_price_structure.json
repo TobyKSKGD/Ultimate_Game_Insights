@@ -1,0 +1,44 @@
+[
+  {
+    "bucket": "Free",
+    "game_count": 14160,
+    "median_review_count": 0.0,
+    "median_positive_rate": 77.45
+  },
+  {
+    "bucket": "$0.01–$4.99",
+    "game_count": 39388,
+    "median_review_count": 9.0,
+    "median_positive_rate": 79.45
+  },
+  {
+    "bucket": "$5.00–$9.99",
+    "game_count": 19090,
+    "median_review_count": 16.0,
+    "median_positive_rate": 82.69
+  },
+  {
+    "bucket": "$10.00–$19.99",
+    "game_count": 12731,
+    "median_review_count": 57.0,
+    "median_positive_rate": 83.5
+  },
+  {
+    "bucket": "$20.00–$29.99",
+    "game_count": 2558,
+    "median_review_count": 227.5,
+    "median_positive_rate": 81.52
+  },
+  {
+    "bucket": "$30.00–$59.99",
+    "game_count": 1383,
+    "median_review_count": 591.0,
+    "median_positive_rate": 81.58
+  },
+  {
+    "bucket": "$60.00+",
+    "game_count": 308,
+    "median_review_count": 8.0,
+    "median_positive_rate": 70.75
+  }
+]

@@ -1,0 +1,182 @@
+[
+  {
+    "genre": "Indie",
+    "game_count": 63189,
+    "median_positive_rate": 81.54,
+    "median_review_count": 14.0
+  },
+  {
+    "genre": "Casual",
+    "game_count": 38699,
+    "median_positive_rate": 82.44,
+    "median_review_count": 9.0
+  },
+  {
+    "genre": "Action",
+    "game_count": 36842,
+    "median_positive_rate": 79.55,
+    "median_review_count": 15.0
+  },
+  {
+    "genre": "Adventure",
+    "game_count": 35452,
+    "median_positive_rate": 81.4,
+    "median_review_count": 17.0
+  },
+  {
+    "genre": "Simulation",
+    "game_count": 18570,
+    "median_positive_rate": 78.26,
+    "median_review_count": 18.0
+  },
+  {
+    "genre": "Strategy",
+    "game_count": 17366,
+    "median_positive_rate": 78.72,
+    "median_review_count": 17.0
+  },
+  {
+    "genre": "RPG",
+    "game_count": 16342,
+    "median_positive_rate": 80.0,
+    "median_review_count": 18.0
+  },
+  {
+    "genre": "Early Access",
+    "game_count": 9113,
+    "median_positive_rate": 77.41,
+    "median_review_count": 9.0
+  },
+  {
+    "genre": "Free To Play",
+    "game_count": 8867,
+    "median_positive_rate": 77.33,
+    "median_review_count": 0.0
+  },
+  {
+    "genre": "Sports",
+    "game_count": 3939,
+    "median_positive_rate": 77.54,
+    "median_review_count": 15.0
+  },
+  {
+    "genre": "Racing",
+    "game_count": 3301,
+    "median_positive_rate": 77.5,
+    "median_review_count": 13.0
+  },
+  {
+    "genre": "Massively Multiplayer",
+    "game_count": 2123,
+    "median_positive_rate": 66.69,
+    "median_review_count": 23.0
+  },
+  {
+    "genre": "Utilities",
+    "game_count": 856,
+    "median_positive_rate": 75.65,
+    "median_review_count": 14.0
+  },
+  {
+    "genre": "Design & Illustration",
+    "game_count": 494,
+    "median_positive_rate": 79.72,
+    "median_review_count": 19.0
+  },
+  {
+    "genre": "Violent",
+    "game_count": 429,
+    "median_positive_rate": 61.72,
+    "median_review_count": 21.0
+  },
+  {
+    "genre": "Animation & Modeling",
+    "game_count": 394,
+    "median_positive_rate": 77.28,
+    "median_review_count": 18.5
+  },
+  {
+    "genre": "Education",
+    "game_count": 390,
+    "median_positive_rate": 76.14,
+    "median_review_count": 10.0
+  },
+  {
+    "genre": "Video Production",
+    "game_count": 285,
+    "median_positive_rate": 75.0,
+    "median_review_count": 13.0
+  },
+  {
+    "genre": "Gore",
+    "game_count": 265,
+    "median_positive_rate": 59.15,
+    "median_review_count": 26.0
+  },
+  {
+    "genre": "Game Development",
+    "game_count": 256,
+    "median_positive_rate": 83.87,
+    "median_review_count": 9.0
+  },
+  {
+    "genre": "Audio Production",
+    "game_count": 195,
+    "median_positive_rate": 75.45,
+    "median_review_count": 18.0
+  },
+  {
+    "genre": "Software Training",
+    "game_count": 192,
+    "median_positive_rate": 72.81,
+    "median_review_count": 14.0
+  },
+  {
+    "genre": "Photo Editing",
+    "game_count": 149,
+    "median_positive_rate": 81.08,
+    "median_review_count": 10.0
+  },
+  {
+    "genre": "Web Publishing",
+    "game_count": 99,
+    "median_positive_rate": 79.55,
+    "median_review_count": 30.0
+  },
+  {
+    "genre": "Nudity",
+    "game_count": 96,
+    "median_positive_rate": 67.8,
+    "median_review_count": 35.5
+  },
+  {
+    "genre": "Sexual Content",
+    "game_count": 90,
+    "median_positive_rate": 75.18,
+    "median_review_count": 35.5
+  },
+  {
+    "genre": "Accounting",
+    "game_count": 24,
+    "median_positive_rate": 71.75,
+    "median_review_count": 4.0
+  },
+  {
+    "genre": "Movie",
+    "game_count": 2,
+    "median_positive_rate": 53.4,
+    "median_review_count": 1613.0
+  },
+  {
+    "genre": "Documentary",
+    "game_count": 1,
+    "median_positive_rate": null,
+    "median_review_count": 1.0
+  },
+  {
+    "genre": "Episodic",
+    "game_count": 1,
+    "median_positive_rate": null,
+    "median_review_count": 1.0
+  }
+]

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SteamScope — Steam 游戏市场交互式数据分析</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loading-overlay" class="loading-overlay">
+    <div class="loading-card">
+      <h2>SteamScope</h2>
+      <p class="loading-subtitle">正在加载分析数据...</p>
+      <div class="progress-bar-track">
+        <div id="progress-bar-fill" class="progress-bar-fill"></div>
+      </div>
+      <p class="loading-status" id="loading-status">初始化...</p>
+      <p class="loading-file" id="loading-file"></p>
+      <div id="loading-list" class="loading-list"></div>
+    </div>
+  </div>
+
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="28" height="28" rx="4" fill="#66c0f4"/>
+          <text x="14" y="20" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="16" fill="#1b2838">SS</text>
+        </svg>
+        <span>SteamScope</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#hero">概览</a></li>
+        <li><a href="#market">市场结构</a></li>
+        <li><a href="#feedback">反馈与定位</a></li>
+        <li><a href="#graph">图数据</a></li>
+      </ul>
+      <a href="recommender.html" class="nav-cta">游戏推荐</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero" class="hero">
+    <div class="container">
+      <h1>SteamScope</h1>
+      <p class="hero-subtitle">基于大规模 Steam 游戏数据的交互式分析与图推荐展示</p>
+      <p class="hero-note">
+        基于 <a href="https://www.kaggle.com/datasets/artermiloff/steam-games-dataset" target="_blank">Kaggle Steam Games Dataset 2025</a>（89,618 款游戏、452 个标签、33 个类型），
+        对 Steam 游戏市场进行结构分析、玩家反馈挖掘与标签生态定位，
+        并将游戏、标签、类型、分类抽象为异构图结构，实现基于图相似度的游戏推荐。
+        <br>
+        <a href="https://github.com/TobyKSKGD/Ultimate_Game_Insights" target="_blank">GitHub: TobyKSKGD/Ultimate_Game_Insights</a>
+      </p>
+      <div id="stats-cards" class="stats-grid">
+        <div class="stat-card"><span class="stat-num" id="stat-total">—</span><span class="stat-label">游戏总数</span></div>
+        <div class="stat-card"><span class="stat-num" id="stat-reviewed">—</span><span class="stat-label">有评论游戏</span></div>
+        <div class="stat-card"><span class="stat-num" id="stat-free">—</span><span class="stat-label">免费游戏比例</span></div>
+        <div class="stat-card"><span class="stat-num" id="stat-genres">—</span><span class="stat-label">类型数</span></div>
+        <div class="stat-card"><span class="stat-num" id="stat-tags">—</span><span class="stat-label">标签数</span></div>
+        <div class="stat-card"><span class="stat-num" id="stat-top-year">—</span><span class="stat-label">发行高峰年</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Market Overview -->
+  <section id="market" class="section">
+    <div class="container">
+      <h2>市场结构概览</h2>
+      <p class="section-desc">基于 March 2025 Steam 数据集（89,618 款游戏）的趋势分析。</p>
+
+      <div class="chart-row">
+        <div class="chart-card">
+          <h3>Steam 游戏发行年份趋势</h3>
+          <div id="chart-release-year" class="chart-box"></div>
+        </div>
+      </div>
+
+      <div class="chart-row two-col">
+        <div class="chart-card">
+          <h3>价格区间分布</h3>
+          <div id="chart-price-structure" class="chart-box"></div>
+        </div>
+        <div class="chart-card">
+          <h3>各价格区间中位好评率<br><small>（评论数 ≥ 30 的游戏）</small></h3>
+          <div id="chart-price-rate" class="chart-box"></div>
+        </div>
+      </div>
+
+      <div class="chart-row two-col">
+        <div class="chart-card">
+          <h3>Top 15 游戏类型</h3>
+          <div id="chart-top-genres" class="chart-box chart-h"></div>
+        </div>
+        <div class="chart-card">
+          <h3>Top 15 标签</h3>
+          <div id="chart-top-tags" class="chart-box chart-h"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feedback & Positioning -->
+  <section id="feedback" class="section section-alt">
+    <div class="container">
+      <h2>玩家反馈与标签定位</h2>
+      <p class="section-desc">展示 Top 标签和类型的中位好评率与评论数，反映玩家关注度分布。</p>
+
+      <div class="filter-bar">
+        <label class="filter-label">最小样本量（游戏数）</label>
+        <input type="range" id="min-sample-slider" class="filter-slider" min="1" max="2000" value="100" step="1">
+        <span class="filter-value" id="min-sample-value">100</span>
+        <span class="filter-hint">拖动滑块过滤小样本类型/标签，避免统计偏差</span>
+      </div>
+
+      <div class="chart-row two-col">
+        <div class="chart-card">
+          <h3>Top 20 标签 — 中位评论数</h3>
+          <div id="chart-tag-reviews" class="chart-box"></div>
+        </div>
+        <div class="chart-card">
+          <h3>Top 20 游戏类型 — 中位评论数</h3>
+          <div id="chart-genre-reviews" class="chart-box"></div>
+        </div>
+      </div>
+
+      <div class="chart-row two-col">
+        <div class="chart-card">
+          <h3>Top 20 标签 — 游戏数量 vs 中位评论数</h3>
+          <div id="chart-tag-bubble" class="chart-box chart-h"></div>
+        </div>
+        <div class="chart-card">
+          <h3>Top 20 游戏类型 — 游戏数量 vs 中位评论数</h3>
+          <div id="chart-genre-bubble" class="chart-box chart-h"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Graph Data -->
+  <section id="graph" class="section">
+    <div class="container">
+      <h2>图数据结构展示</h2>
+      <p class="section-desc">
+        将游戏、标签、类型、分类抽象为异构图结构：<br>
+        <code>Game —has_tag→ Tag</code> &nbsp;|&nbsp;
+        <code>Game —has_genre→ Genre</code> &nbsp;|&nbsp;
+        <code>Game —has_category→ Category</code>
+      </p>
+
+      <div id="graph-stats-grid" class="stats-grid small">
+        <div class="stat-card"><span class="stat-num" id="gs-games">—</span><span class="stat-label">Game 节点</span></div>
+        <div class="stat-card"><span class="stat-num" id="gs-tags">—</span><span class="stat-label">Tag 节点</span></div>
+        <div class="stat-card"><span class="stat-num" id="gs-genres">—</span><span class="stat-label">Genre 节点</span></div>
+        <div class="stat-card"><span class="stat-num" id="gs-categories">—</span><span class="stat-label">Category 节点</span></div>
+        <div class="stat-card"><span class="stat-num" id="gs-total-nodes">—</span><span class="stat-label">总节点数</span></div>
+        <div class="stat-card"><span class="stat-num" id="gs-total-edges">—</span><span class="stat-label">总边数</span></div>
+      </div>
+
+      <div class="chart-row">
+        <div class="chart-card">
+          <h3>Top 40 标签共现网络</h3>
+          <p class="chart-note">节点大小 = 出现该标签的游戏数量，边粗细 = 共现次数。仅显示权重最高的 200 条边。</p>
+          <div id="chart-cooccurrence" class="chart-box chart-xl"></div>
+        </div>
+      </div>
+
+      <div class="chart-row">
+        <div class="chart-card">
+          <h3>Top 30 Tag Co-occurrence Pairs（共现强度排序）</h3>
+          <div id="cooccur-table-wrap" class="table-wrap">
+            <table id="cooccur-table" class="data-table">
+              <thead><tr><th>标签 A</th><th>标签 B</th><th>共现次数</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p style="color:var(--text2);font-size:0.9rem;margin-bottom:16px;">
+        基于游戏—属性图的 Jaccard 相似度，为你搜索的任意游戏找到风格最接近的同类作品。
+      </p>
+      <p>
+        <a href="recommender.html" class="footer-cta">游戏推荐</a>
+      </p>
+      <p style="margin-top:16px;">
+        SteamScope · 大数据处理技术课程项目 · 张思拓 2025134009<br>
+        数据集: <a href="https://www.kaggle.com/datasets/artermiloff/steam-games-dataset" target="_blank">Kaggle Steam Games Dataset 2025</a> ·
+        <a href="https://github.com/TobyKSKGD/Ultimate_Game_Insights" target="_blank">GitHub</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/zh_labels.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
