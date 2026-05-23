@@ -154,7 +154,7 @@ Key Python packages currently used:
 
 ## 7. Notebook Status
 
-The main notebook sequence is complete from `01` to `08`.
+The main notebook sequence is complete from `01` to `09`.
 
 ### 01_steam_dataset_overview.ipynb
 
@@ -322,6 +322,49 @@ Current notes:
 - For free games, `estimated_owners` should be interpreted as estimated reach/ownership, not sales revenue.
 - Strategy displays should not hide adult/mature tags. Treat them as real Steam market signals, but discuss them neutrally as a special segment that may also reflect low-quality supply concentration and tag saturation.
 
+### 09_text_analysis.ipynb
+
+Purpose:
+
+- address unstructured text data processing, one of the six data types covered in the course,
+- generate Steam tag word cloud and description word cloud visualizations,
+- use TF-IDF to extract distinguishing keywords between high-review (≥100 reviews) and low-review games,
+- analyze relationships between text length, tag richness, and player attention metrics,
+- provide a graph data perspective by summarizing the heterogeneous graph structure (Game–Tag/Genre/Category),
+- align the project's analysis dimensions with the course's six-data-type framework.
+
+Key findings to preserve:
+
+- Steam tag frequency is long-tailed: Indie (48.4%), Singleplayer (47.7%), Action (36.1%), Casual (35.5%), Adventure (34.3%).
+- High-review games emphasize words like `world`, `story`, `experience`, `combat`, `online`, `multiplayer` in descriptions.
+- Low-review games use more `puzzle`, `arcade`, `classic`, `simple`, `relaxing`, `fun` in descriptions.
+- TF-IDF distinguishes high-review keywords (`online`, `tactical`, `coop`, `series`, `build`, `story`) from low-review keywords (`puzzle`, `collect`, `simple`, `platformer`, `relaxing`, `casual`).
+- Text description length has a weak positive correlation with review count, but is not a linear predictor.
+- Tag count (richness) shows positive correlation with review count — more tags may improve search visibility.
+- The heterogeneous graph structure comprises ~90K nodes and ~1.64M edges (Game→Tag/Genre/Category).
+
+Important outputs:
+
+- `figures/46_text_tag_wordcloud.png` — Steam tag word cloud
+- `figures/46b_text_top30_tags_bar.png` — Top 30 tags bar chart
+- `figures/47_text_description_wordcloud_comparison.png` — High vs low review description word clouds
+- `figures/48_text_tfidf_high_vs_low_keywords.png` — TF-IDF distinguishing keywords
+- `figures/49_text_length_vs_popularity.png` — Text length vs popularity analysis
+- `figures/50_text_tag_richness_vs_popularity.png` — Tag richness vs market performance
+- `data/processed/steam_text_tag_frequency.csv` — Top 100 tag frequencies
+- `data/processed/steam_text_tfidf_keywords.csv` — TF-IDF keyword analysis results
+- `data/processed/steam_text_length_vs_popularity.csv` — Text length bin statistics
+- `data/processed/steam_text_tag_richness_vs_popularity.csv` — Tag richness bin statistics
+- `data/processed/steam_text_graph_summary.csv` — Heterogeneous graph structure summary
+
+Notes:
+
+- This notebook fills a course-coverage gap: the course's Chapter 3 identifies six data types including unstructured text data and graph data, which were not addressed in notebooks 01–08.
+- All analysis is descriptive and does not involve causal inference or predictive modeling.
+- Text analysis uses English (Steam store language); Chinese NLP is not involved.
+- The graph data perspective (§7 of the notebook) summarizes the heterogeneous graph structure that powers the steam-scope tag co-occurrence network and recommender.
+- The notebook includes a course-framework alignment table mapping each data type to corresponding notebooks.
+
 ## 8. Generated Outputs
 
 Main generated figures:
@@ -371,6 +414,12 @@ Main generated figures:
 - `figures/43_indie_tag_sales_proxy_candidates.png`
 - `figures/44_discussion_score_by_price_bucket.png`
 - `figures/45_free_game_tag_feedback_engagement.png`
+- `figures/46_text_tag_wordcloud.png`
+- `figures/46b_text_top30_tags_bar.png`
+- `figures/47_text_description_wordcloud_comparison.png`
+- `figures/48_text_tfidf_high_vs_low_keywords.png`
+- `figures/49_text_length_vs_popularity.png`
+- `figures/50_text_tag_richness_vs_popularity.png`
 
 Small summary outputs under `data/processed/` include:
 
@@ -380,6 +429,7 @@ Small summary outputs under `data/processed/` include:
 - review/popularity summary CSV files,
 - tag/genre positioning summary CSV files.
 - sales-proxy and publishing-strategy summary CSV files.
+- text analysis summary CSV files (tag frequency, TF-IDF keywords, text length vs popularity, tag richness, graph summary).
 
 Large ignored outputs include:
 

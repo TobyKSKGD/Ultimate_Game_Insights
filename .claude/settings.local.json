@@ -29,7 +29,15 @@
       "Bash(grep -n '#[0-9a-fA-F]\\\\{3,6\\\\}\\\\|rgba\\(' /Users/situozhang/Documents/大数据处理技术/Ultimate_Game_Insights/steam-scope/js/app.js)",
       "Bash(grep *)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8000/assets/favicon.svg)",
-      "Bash(git -C /Users/situozhang/Documents/大数据处理技术/Ultimate_Game_Insights remote -v)"
+      "Bash(git -C /Users/situozhang/Documents/大数据处理技术/Ultimate_Game_Insights remote -v)",
+      "Bash(brew install *)",
+      "Bash(pip list *)",
+      "Bash(pip install *)",
+      "Bash(/opt/homebrew/bin/pdftotext \"/Users/situozhang/Documents/大数据处理技术/课件/课件-Chapter1.pdf\" -)",
+      "Bash(/opt/homebrew/bin/pdftotext \"/Users/situozhang/Documents/大数据处理技术/课件/课件-Chapter2.pdf\" -)",
+      "Bash(/opt/homebrew/bin/pdftotext \"/Users/situozhang/Documents/大数据处理技术/课件/课件-Chapter3.pdf\" -)",
+      "Bash(/opt/homebrew/bin/pdftotext \"/Users/situozhang/Documents/大数据处理技术/课件/课件-Chapter4.pdf\" -)",
+      "Bash(/opt/homebrew/bin/pdftotext \"/Users/situozhang/Documents/大数据处理技术/课件/课件-Chapter5.pdf\" -)"
     ]
   }
 }

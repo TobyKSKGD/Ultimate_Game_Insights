@@ -174,7 +174,7 @@ function renderReleaseYear() {
   chart.setOption(
     darkThemeOpt({
       tooltip: { trigger: "axis" },
-      grid: { left: 65, right: 30, top: 20, bottom: 40 },
+      grid: { left: 75, right: 30, top: 50, bottom: 40 },
       xAxis: {
         type: "category",
         data: releaseYearData.map((d) => d.year),
@@ -184,6 +184,8 @@ function renderReleaseYear() {
       yAxis: {
         type: "value",
         name: "游戏数量",
+        nameLocation: "end",
+        nameGap: 15,
         axisLabel: { color: "#8f98a0" },
         splitLine: { lineStyle: { color: "#2a475e" } },
       },
@@ -224,7 +226,7 @@ function renderPriceStructure() {
         yAxis: {
           type: "value",
           name: "游戏数量",
-          axisLabel: { color: "#8f98a0" },
+          axisLabel: { color: "#8f98a0", formatter: (v) => v >= 1000 ? (v / 1000).toFixed(0) + "k" : v },
           splitLine: { lineStyle: { color: "#2a475e" } },
         },
         series: [
@@ -302,7 +304,7 @@ function renderHorizontalBar(domId, data, labelField, valueField, color, labelFn
       grid: { left: 210, right: 40, top: 10, bottom: 20 },
       xAxis: {
         type: "value",
-        axisLabel: { color: "#8f98a0" },
+        axisLabel: { color: "#8f98a0", formatter: (v) => v >= 1000 ? (v / 1000).toFixed(0) + "k" : v },
         splitLine: { lineStyle: { color: "#2a475e" } },
       },
       yAxis: {
@@ -359,7 +361,7 @@ function renderBubbleChart(domId, data, labelField, countField, rateField, color
         name: "游戏数量",
         nameLocation: "middle",
         nameGap: 30,
-        axisLabel: { color: "#8f98a0" },
+        axisLabel: { color: "#8f98a0", formatter: (v) => v >= 1000 ? (v / 1000).toFixed(0) + "k" : v },
         splitLine: { lineStyle: { color: "#2a475e" } },
       },
       yAxis: {
@@ -417,6 +419,8 @@ function renderReviewBar(domId, data, labelField, countField, color, labelFn) {
       xAxis: {
         type: "value",
         name: "中位评论数",
+        nameLocation: "center",
+        nameGap: 25,
         axisLabel: { color: "#8f98a0" },
         splitLine: { lineStyle: { color: "#2a475e" } },
       },
