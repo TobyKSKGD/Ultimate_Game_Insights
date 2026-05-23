@@ -36,6 +36,7 @@
         <li><a href="#hero">概览</a></li>
         <li><a href="#market">市场结构</a></li>
         <li><a href="#feedback">反馈与定位</a></li>
+        <li><a href="#text">文本洞察</a></li>
         <li><a href="#graph">图数据</a></li>
       </ul>
       <a href="recommender.html" class="nav-cta">游戏推荐</a>
@@ -135,6 +136,32 @@
         <div class="chart-card">
           <h3>Top 20 游戏类型 — 游戏数量 vs 中位评论数</h3>
           <div id="chart-genre-bubble" class="chart-box chart-h"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Text Insights -->
+  <section id="text" class="section section-alt">
+    <div class="container">
+      <h2>文本洞察</h2>
+      <p class="section-desc">基于游戏描述文本与标签体系的非结构化数据分析，揭示不同热度层级的游戏在词汇选择与市场定位上的差异。</p>
+
+      <div class="chart-row two-col">
+        <div class="chart-card">
+          <h3>TF-IDF 区分性关键词 — 高评论 vs 低评论游戏</h3>
+          <p class="chart-note">比较评论数≥100与<100的游戏描述中哪些词最具区分力。高评论组词汇偏向大型/多人/叙事，低评论组词汇偏向休闲/解谜/简单。</p>
+          <div class="toggle-group" id="tfidf-toggle-group">
+            <button class="toggle-btn active" data-view="high">高评论组关键词</button>
+            <button class="toggle-btn" data-view="low">低评论组关键词</button>
+            <button class="toggle-btn" data-view="both">并排对比</button>
+          </div>
+          <div id="chart-tfidf-keywords" class="chart-box"></div>
+        </div>
+        <div class="chart-card">
+          <h3>标签丰富度与市场表现</h3>
+          <p class="chart-note">标签数量越多，中位好评率整体越高（r≈0.28）。更多标签可能意味着更精准的搜索曝光和更清晰的市场定位。</p>
+          <div id="chart-tag-richness" class="chart-box"></div>
         </div>
       </div>
     </div>

@@ -583,6 +583,72 @@ def export_recommendations(df: pd.DataFrame, game_index: list):
 
 
 # ══════════════════════════════════════════════════════════════════════════
+# 10. chart_text_tfidf_keywords.json
+# ══════════════════════════════════════════════════════════════════════════
+
+def export_chart_text_tfidf_keywords():
+    print("Exporting chart_text_tfidf_keywords.json ...")
+    t0 = time.time()
+
+    csv_path = PROCESSED_DIR / "steam_text_tfidf_keywords.csv"
+    if not csv_path.exists():
+        print("  WARNING: steam_text_tfidf_keywords.csv not found, skipping")
+        return None
+
+    tfidf_df = pd.read_csv(csv_path)
+    # Keep top 25 high-review words and top 25 low-review words
+    high_words = tfidf_df.nlargest(25, "diff_high_minus_low")[
+        ["word", "high_tfidf", "low_tfidf", "diff_high_minus_low"]
+    ].to_dict(orient="records")
+    low_words = tfidf_df.nsmallest(25, "diff_high_minus_low")[
+        ["word", "high_tfidf", "low_tfidf", "diff_high_minus_low"]
+    ].to_dict(orient="records")
+
+    data = {
+        "high_group": high_words,
+        "low_group": low_words,
+    }
+
+    with open(OUTPUT_DIR / "chart_text_tfidf_keywords.json", "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+
+    file_size = os.path.getsize(OUTPUT_DIR / "chart_text_tfidf_keywords.json")
+    print(f"  → chart_text_tfidf_keywords.json: {len(high_words)} high + {len(low_words)} low words, {file_size} B ({time.time() - t0:.1f}s)")
+    return data
+
+
+# ══════════════════════════════════════════════════════════════════════════
+# 11. chart_text_tag_richness.json
+# ══════════════════════════════════════════════════════════════════════════
+
+def export_chart_text_tag_richness():
+    print("Exporting chart_text_tag_richness.json ...")
+    t0 = time.time()
+
+    csv_path = PROCESSED_DIR / "steam_text_tag_richness_vs_popularity.csv"
+    if not csv_path.exists():
+        print("  WARNING: steam_text_tag_richness_vs_popularity.csv not found, skipping")
+        return None
+
+    richness_df = pd.read_csv(csv_path)
+    data = []
+    for _, row in richness_df.iterrows():
+        data.append({
+            "tag_count_bin": str(row["tag_count_bin"]),
+            "game_count": int(row["game_count"]),
+            "median_review_count": round(float(row["median_review_count"]), 1),
+            "median_positive_rate": round(float(row["median_positive_rate"]), 2),
+        })
+
+    with open(OUTPUT_DIR / "chart_text_tag_richness.json", "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+
+    file_size = os.path.getsize(OUTPUT_DIR / "chart_text_tag_richness.json")
+    print(f"  → chart_text_tag_richness.json: {len(data)} bins, {file_size} B ({time.time() - t0:.1f}s)")
+    return data
+
+
+# ══════════════════════════════════════════════════════════════════════════
 # Main
 # ══════════════════════════════════════════════════════════════════════════
 
@@ -623,6 +689,12 @@ def main():
 
     # 9 — needs game_index
     export_recommendations(df, game_index)
+
+    # 10 — text analysis: TF-IDF keywords
+    export_chart_text_tfidf_keywords()
+
+    # 11 — text analysis: tag richness vs popularity
+    export_chart_text_tag_richness()
 
     # Summary
     print("\n" + "=" * 60)

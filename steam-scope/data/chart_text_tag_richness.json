@@ -1,0 +1,38 @@
+[
+  {
+    "tag_count_bin": "0-3",
+    "game_count": 1571,
+    "median_review_count": 63.0,
+    "median_positive_rate": 66.3
+  },
+  {
+    "tag_count_bin": "3-5",
+    "game_count": 2829,
+    "median_review_count": 79.0,
+    "median_positive_rate": 72.37
+  },
+  {
+    "tag_count_bin": "5-8",
+    "game_count": 3675,
+    "median_review_count": 116.0,
+    "median_positive_rate": 76.62
+  },
+  {
+    "tag_count_bin": "8-12",
+    "game_count": 3604,
+    "median_review_count": 161.0,
+    "median_positive_rate": 78.96
+  },
+  {
+    "tag_count_bin": "12-20",
+    "game_count": 21677,
+    "median_review_count": 215.0,
+    "median_positive_rate": 83.7
+  },
+  {
+    "tag_count_bin": "20-50",
+    "game_count": 1,
+    "median_review_count": 136.0,
+    "median_positive_rate": 51.47
+  }
+]

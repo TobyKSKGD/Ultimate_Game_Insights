@@ -157,6 +157,23 @@ a { color: var(--accent); text-decoration: none; }
 }
 .filter-hint { color: var(--text2); font-size: 0.78rem; width: 100%; }
 
+/* Toggle button group */
+.toggle-group {
+  display: inline-flex; gap: 6px; margin-bottom: 14px;
+}
+.toggle-btn {
+  padding: 6px 16px; border: 1px solid var(--border);
+  background: transparent; color: var(--text2);
+  border-radius: var(--radius); cursor: pointer;
+  font-size: 0.82rem; font-family: var(--font);
+  transition: all 0.15s ease;
+}
+.toggle-btn:hover { border-color: var(--accent); color: var(--text); }
+.toggle-btn.active {
+  background: var(--accent); color: #fff;
+  border-color: var(--accent);
+}
+
 /* ── Charts ────────────────────────────────────────────────────── */
 .chart-row { margin-bottom: 32px; }
 .chart-row.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }

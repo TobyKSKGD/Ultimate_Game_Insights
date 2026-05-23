@@ -1,0 +1,306 @@
+{
+  "high_group": [
+    {
+      "word": "world",
+      "high_tfidf": 0.04205817800041,
+      "low_tfidf": 0.0307689765362619,
+      "diff_high_minus_low": 0.011289201464148
+    },
+    {
+      "word": "series",
+      "high_tfidf": 0.0123821417173359,
+      "low_tfidf": 0.0051594264892153,
+      "diff_high_minus_low": 0.0072227152281205
+    },
+    {
+      "word": "build",
+      "high_tfidf": 0.0170929335353132,
+      "low_tfidf": 0.0103912903303663,
+      "diff_high_minus_low": 0.0067016432049468
+    },
+    {
+      "word": "set",
+      "high_tfidf": 0.0178690423945576,
+      "low_tfidf": 0.011489274449543,
+      "diff_high_minus_low": 0.0063797679450146
+    },
+    {
+      "word": "online",
+      "high_tfidf": 0.0119258528571511,
+      "low_tfidf": 0.0061531399692243,
+      "diff_high_minus_low": 0.0057727128879267
+    },
+    {
+      "word": "war",
+      "high_tfidf": 0.0117915769484475,
+      "low_tfidf": 0.0064476884010014,
+      "diff_high_minus_low": 0.005343888547446
+    },
+    {
+      "word": "tactical",
+      "high_tfidf": 0.0079778748639527,
+      "low_tfidf": 0.0032078962617137,
+      "diff_high_minus_low": 0.0047699786022389
+    },
+    {
+      "word": "coop",
+      "high_tfidf": 0.0082940035476564,
+      "low_tfidf": 0.0036359175569065,
+      "diff_high_minus_low": 0.0046580859907498
+    },
+    {
+      "word": "story",
+      "high_tfidf": 0.0190988858534353,
+      "low_tfidf": 0.0144929336693712,
+      "diff_high_minus_low": 0.004605952184064
+    },
+    {
+      "word": "life",
+      "high_tfidf": 0.0160653413963679,
+      "low_tfidf": 0.0115119256197242,
+      "diff_high_minus_low": 0.0045534157766437
+    },
+    {
+      "word": "rpg",
+      "high_tfidf": 0.01580602430782,
+      "low_tfidf": 0.0113473013541216,
+      "diff_high_minus_low": 0.0044587229536984
+    },
+    {
+      "word": "epic",
+      "high_tfidf": 0.0092742842239446,
+      "low_tfidf": 0.0048183472833802,
+      "diff_high_minus_low": 0.0044559369405644
+    },
+    {
+      "word": "combat",
+      "high_tfidf": 0.012345711035261,
+      "low_tfidf": 0.0079981260459135,
+      "diff_high_minus_low": 0.0043475849893474
+    },
+    {
+      "word": "strategy",
+      "high_tfidf": 0.0135870742314168,
+      "low_tfidf": 0.0094082335953958,
+      "diff_high_minus_low": 0.004178840636021
+    },
+    {
+      "word": "adventure",
+      "high_tfidf": 0.02608128445939,
+      "low_tfidf": 0.0222080244106924,
+      "diff_high_minus_low": 0.0038732600486975
+    },
+    {
+      "word": "deep",
+      "high_tfidf": 0.0075180276540029,
+      "low_tfidf": 0.0037508062810805,
+      "diff_high_minus_low": 0.0037672213729223
+    },
+    {
+      "word": "experience",
+      "high_tfidf": 0.0200475722961798,
+      "low_tfidf": 0.0163708312260171,
+      "diff_high_minus_low": 0.0036767410701627
+    },
+    {
+      "word": "original",
+      "high_tfidf": 0.0069758870735016,
+      "low_tfidf": 0.0033457108046933,
+      "diff_high_minus_low": 0.0036301762688083
+    },
+    {
+      "word": "explore",
+      "high_tfidf": 0.018876275660454,
+      "low_tfidf": 0.0153263762066363,
+      "diff_high_minus_low": 0.0035498994538176
+    },
+    {
+      "word": "lead",
+      "high_tfidf": 0.0072724495713079,
+      "low_tfidf": 0.0037608536341605,
+      "diff_high_minus_low": 0.0035115959371474
+    },
+    {
+      "word": "amp",
+      "high_tfidf": 0.0101389163645179,
+      "low_tfidf": 0.0068268760804029,
+      "diff_high_minus_low": 0.003312040284115
+    },
+    {
+      "word": "simulator",
+      "high_tfidf": 0.0106826471666333,
+      "low_tfidf": 0.0075155541434638,
+      "diff_high_minus_low": 0.0031670930231695
+    },
+    {
+      "word": "steam",
+      "high_tfidf": 0.0060213837084764,
+      "low_tfidf": 0.0029190464371395,
+      "diff_high_minus_low": 0.0031023372713369
+    },
+    {
+      "word": "city",
+      "high_tfidf": 0.0116008524916149,
+      "low_tfidf": 0.0085546517667475,
+      "diff_high_minus_low": 0.0030462007248673
+    },
+    {
+      "word": "battles",
+      "high_tfidf": 0.0082020111579569,
+      "low_tfidf": 0.0051700204027822,
+      "diff_high_minus_low": 0.0030319907551746
+    }
+  ],
+  "low_group": [
+    {
+      "word": "puzzle",
+      "high_tfidf": 0.0139304558145963,
+      "low_tfidf": 0.0235333669603101,
+      "diff_high_minus_low": -0.0096029111457137
+    },
+    {
+      "word": "levels",
+      "high_tfidf": 0.0074095498516932,
+      "low_tfidf": 0.0139899371135062,
+      "diff_high_minus_low": -0.0065803872618129
+    },
+    {
+      "word": "collect",
+      "high_tfidf": 0.0059855348722562,
+      "low_tfidf": 0.0111872159196587,
+      "diff_high_minus_low": -0.0052016810474025
+    },
+    {
+      "word": "different",
+      "high_tfidf": 0.0086605702913417,
+      "low_tfidf": 0.0137826480231619,
+      "diff_high_minus_low": -0.0051220777318201
+    },
+    {
+      "word": "fun",
+      "high_tfidf": 0.0070636567241757,
+      "low_tfidf": 0.0120042584136663,
+      "diff_high_minus_low": -0.0049406016894906
+    },
+    {
+      "word": "enemies",
+      "high_tfidf": 0.0098606995396089,
+      "low_tfidf": 0.0147279266209334,
+      "diff_high_minus_low": -0.0048672270813245
+    },
+    {
+      "word": "simple",
+      "high_tfidf": 0.0055144014432465,
+      "low_tfidf": 0.0099723971059296,
+      "diff_high_minus_low": -0.0044579956626831
+    },
+    {
+      "word": "platformer",
+      "high_tfidf": 0.0082475834435369,
+      "low_tfidf": 0.0123842549274137,
+      "diff_high_minus_low": -0.0041366714838767
+    },
+    {
+      "word": "help",
+      "high_tfidf": 0.0096816802918129,
+      "low_tfidf": 0.0137074489955476,
+      "diff_high_minus_low": -0.0040257687037347
+    },
+    {
+      "word": "relaxing",
+      "high_tfidf": 0.0029660697104345,
+      "low_tfidf": 0.0068785251375524,
+      "diff_high_minus_low": -0.0039124554271179
+    },
+    {
+      "word": "escape",
+      "high_tfidf": 0.0084830480421438,
+      "low_tfidf": 0.0120394817189419,
+      "diff_high_minus_low": -0.003556433676798
+    },
+    {
+      "word": "obstacles",
+      "high_tfidf": 0.0024155985333468,
+      "low_tfidf": 0.005923167629088,
+      "diff_high_minus_low": -0.0035075690957412
+    },
+    {
+      "word": "puzzles",
+      "high_tfidf": 0.0096314235319833,
+      "low_tfidf": 0.0130813866576922,
+      "diff_high_minus_low": -0.0034499631257089
+    },
+    {
+      "word": "enjoy",
+      "high_tfidf": 0.0056655205265319,
+      "low_tfidf": 0.0091139963760613,
+      "diff_high_minus_low": -0.0034484758495294
+    },
+    {
+      "word": "level",
+      "high_tfidf": 0.0056214132945239,
+      "low_tfidf": 0.0088650674436669,
+      "diff_high_minus_low": -0.0032436541491429
+    },
+    {
+      "word": "score",
+      "high_tfidf": 0.001718110022582,
+      "low_tfidf": 0.0049009953705337,
+      "diff_high_minus_low": -0.0031828853479516
+    },
+    {
+      "word": "casual",
+      "high_tfidf": 0.0035727010903209,
+      "low_tfidf": 0.0067145903192593,
+      "diff_high_minus_low": -0.0031418892289384
+    },
+    {
+      "word": "shooting",
+      "high_tfidf": 0.0024505407290059,
+      "low_tfidf": 0.0055640812522721,
+      "diff_high_minus_low": -0.0031135405232662
+    },
+    {
+      "word": "various",
+      "high_tfidf": 0.0051564017594198,
+      "low_tfidf": 0.0082129954212923,
+      "diff_high_minus_low": -0.0030565936618724
+    },
+    {
+      "word": "sex",
+      "high_tfidf": 0.000204102413357,
+      "low_tfidf": 0.0031629086461619,
+      "diff_high_minus_low": -0.0029588062328048
+    },
+    {
+      "word": "challenge",
+      "high_tfidf": 0.0053907916898334,
+      "low_tfidf": 0.0080766908057503,
+      "diff_high_minus_low": -0.0026858991159168
+    },
+    {
+      "word": "need",
+      "high_tfidf": 0.0066323230286075,
+      "low_tfidf": 0.0093116880543568,
+      "diff_high_minus_low": -0.0026793650257493
+    },
+    {
+      "word": "match",
+      "high_tfidf": 0.0025797810341232,
+      "low_tfidf": 0.0052109090789466,
+      "diff_high_minus_low": -0.0026311280448234
+    },
+    {
+      "word": "solve",
+      "high_tfidf": 0.0080447192373837,
+      "low_tfidf": 0.0106608396443408,
+      "diff_high_minus_low": -0.0026161204069571
+    },
+    {
+      "word": "arcade",
+      "high_tfidf": 0.0076609295071331,
+      "low_tfidf": 0.0102313658800874,
+      "diff_high_minus_low": -0.0025704363729542
+    }
+  ]
+}

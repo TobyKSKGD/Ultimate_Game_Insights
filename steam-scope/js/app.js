@@ -8,6 +8,7 @@ const DATA_DIR = "data/";
 // ── Data loading ─────────────────────────────────────────────────
 let overviewData, releaseYearData, priceData, topTags, topGenres;
 let graphStats, tagCooccurrence;
+let tfidfKeywordsData, tagRichnessData;
 
 // File registry: key, display name, human-readable size
 const FILE_REGISTRY = [
@@ -18,6 +19,8 @@ const FILE_REGISTRY = [
   { key: "topGenres",                 file: "chart_top_genres.json",          label: "热门类型数据",         size: "~4 KB"  },
   { key: "graphStats",                file: "graph_stats.json",               label: "图结构统计",           size: "< 1 KB"  },
   { key: "tagCooccurrence",           file: "tag_cooccurrence_graph.json",    label: "标签共现网络",         size: "~21 KB" },
+  { key: "tfidfKeywordsData",         file: "chart_text_tfidf_keywords.json",  label: "TF-IDF 关键词数据",    size: "~8 KB"  },
+  { key: "tagRichnessData",           file: "chart_text_tag_richness.json",    label: "标签丰富度数据",       size: "< 1 KB"  },
 ];
 
 // Progress UI elements
@@ -82,6 +85,8 @@ async function loadAllData() {
         case "topGenres":          topGenres = data;        break;
         case "graphStats":         graphStats = data;       break;
         case "tagCooccurrence":    tagCooccurrence = data;  break;
+        case "tfidfKeywordsData":  tfidfKeywordsData = data;  break;
+        case "tagRichnessData":    tagRichnessData = data;  break;
       }
       markFile(entry.key, "done");
     } catch (err) {
@@ -602,6 +607,235 @@ function initSampleFilter() {
   renderFilterableCharts(initialVal);
 }
 
+// ── 10. TF-IDF Keywords Chart ────────────────────────────────────
+let tfidfViewMode = "high"; // "high" | "low" | "both"
+
+function renderTfidfKeywords(viewMode) {
+  if (!tfidfKeywordsData) return;
+
+  const mode = viewMode || tfidfViewMode;
+  const chart = getOrCreateChart("chart-tfidf-keywords");
+  if (!chart) return;
+
+  let seriesData, title, color;
+
+  if (mode === "both") {
+    const highItems = tfidfKeywordsData.high_group
+      .map((d) => ({ ...d }))
+      .sort((a, b) => b.diff_high_minus_low - a.diff_high_minus_low);
+    const lowItems = tfidfKeywordsData.low_group
+      .map((d) => ({ ...d }))
+      .sort((a, b) => a.diff_high_minus_low - b.diff_high_minus_low);
+
+    // Diverging bar chart: high group positive (orange), low group negative (blue)
+    const allLabels = [...highItems.map((d) => d.word), ...lowItems.map((d) => d.word)].reverse();
+    const allValues = [
+      ...highItems.map((d) => ({ name: d.word, value: d.diff_high_minus_low, group: "high" })),
+      ...lowItems.map((d) => ({ name: d.word, value: -Math.abs(d.diff_high_minus_low), group: "low" })),
+    ].reverse();
+
+    chart.setOption(darkThemeOpt({
+      tooltip: {
+        trigger: "axis",
+        formatter: function (p) {
+          const d = p[0];
+          const absVal = Math.abs(d.value);
+          const groupLabel = d.value > 0 ? "High-Review" : "Low-Review";
+          return `<b>${d.name}</b><br/>${groupLabel} keyword<br/>|TF-IDF Diff|: ${absVal.toFixed(4)}`;
+        },
+      },
+      grid: { left: 180, right: 40, top: 10, bottom: 20 },
+      xAxis: {
+        type: "value",
+        name: "← Low-Review Keywords  |  High-Review Keywords →",
+        nameLocation: "center", nameGap: 30,
+        axisLabel: { color: "#8f98a0", formatter: (v) => Math.abs(v).toFixed(3) },
+        splitLine: { lineStyle: { color: "#2a475e" } },
+      },
+      yAxis: {
+        type: "category",
+        data: allLabels,
+        axisLabel: { color: "#8f98a0", fontSize: 10 },
+        axisLine: { lineStyle: { color: "#2a475e" } },
+        inverse: true,
+      },
+      series: [{
+        type: "bar",
+        data: allValues.map((d) => ({
+          name: d.name,
+          value: d.value,
+          itemStyle: {
+            color: d.value > 0 ? "#F58518" : "#4C78A8",
+            borderRadius: d.value > 0 ? [4, 0, 0, 4] : [0, 4, 4, 0],
+          },
+        })),
+      }],
+    }), { notMerge: true });
+    return;
+  }
+
+  // Single group view
+  const group = mode === "high" ? tfidfKeywordsData.high_group : tfidfKeywordsData.low_group;
+  const sorted = [...group].sort((a, b) =>
+    mode === "high"
+      ? a.diff_high_minus_low - b.diff_high_minus_low
+      : b.diff_high_minus_low - a.diff_high_minus_low
+  );
+  color = mode === "high" ? "#F58518" : "#4C78A8";
+  title = mode === "high"
+    ? "High-Review Distinguishing Keywords"
+    : "Low-Review Distinguishing Keywords";
+
+  chart.setOption(darkThemeOpt({
+    tooltip: {
+      trigger: "axis",
+      formatter: function (p) {
+        const d = p[0];
+        const abs = Math.abs(d.value);
+        return `<b>${d.name}</b><br/>TF-IDF Diff: ${d.value > 0 ? "+" : ""}${d.value.toFixed(4)}`;
+      },
+    },
+    grid: { left: 180, right: 40, top: 10, bottom: 20 },
+    xAxis: {
+      type: "value",
+      name: mode === "high" ? "TF-IDF Diff (High − Low)" : "TF-IDF Diff (Low − High)",
+      nameLocation: "center", nameGap: 35,
+      axisLabel: { color: "#8f98a0", formatter: (v) => (v > 0 ? "+" : "") + v.toFixed(3) },
+      splitLine: { lineStyle: { color: "#2a475e" } },
+    },
+    yAxis: {
+      type: "category",
+      data: sorted.map((d) => d.word).reverse(),
+      axisLabel: { color: "#8f98a0", fontSize: 10 },
+      axisLine: { lineStyle: { color: "#2a475e" } },
+      inverse: true,
+    },
+    series: [{
+      type: "bar",
+      data: sorted.map((d) => ({
+        name: d.word,
+        value: mode === "high" ? d.diff_high_minus_low : -d.diff_high_minus_low,
+        itemStyle: {
+          color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+            { offset: 0, color: color },
+            { offset: 1, color: "rgba(143,152,160,0.3)" },
+          ]),
+          borderRadius: [0, 4, 4, 0],
+        },
+      })).reverse(),
+    }],
+  }), { notMerge: true });
+}
+
+function initTfidfToggle() {
+  const buttons = document.querySelectorAll("#tfidf-toggle-group .toggle-btn");
+  if (!buttons.length) return;
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      buttons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      tfidfViewMode = btn.dataset.view;
+      renderTfidfKeywords(tfidfViewMode);
+    });
+  });
+}
+
+// ── 11. Tag Richness Chart ───────────────────────────────────────
+function renderTagRichnessChart() {
+  if (!tagRichnessData) return;
+
+  const chart = getOrCreateChart("chart-tag-richness");
+  if (!chart) return;
+
+  const bins = tagRichnessData.map((d) => d.tag_count_bin);
+  const reviewCounts = tagRichnessData.map((d) => d.median_review_count);
+  const positiveRates = tagRichnessData.map((d) => d.median_positive_rate);
+  const gameCounts = tagRichnessData.map((d) => d.game_count);
+
+  // Use lighter bar colors so the green line and labels stand out clearly
+  const barColors = reviewCounts.map((v, i) =>
+    i === reviewCounts.length - 1
+      ? "rgba(102,192,244,0.25)"  // last bin (50+) has tiny sample, de-emphasize
+      : "rgba(102,192,244,0.55)"
+  );
+
+  chart.setOption(darkThemeOpt({
+    tooltip: {
+      trigger: "axis",
+      formatter: function (params) {
+        const idx = params[0].dataIndex;
+        return `<b>${bins[idx]} tags</b><br/>
+          游戏数量: ${gameCounts[idx].toLocaleString()}<br/>
+          中位评论数: ${reviewCounts[idx].toLocaleString()}<br/>
+          中位好评率: ${positiveRates[idx].toFixed(1)}%`;
+      },
+    },
+    grid: { left: 65, right: 65, top: 55, bottom: 45 },
+    xAxis: {
+      type: "category",
+      data: bins,
+      axisLabel: { color: "#8f98a0", fontSize: 11 },
+      axisLine: { lineStyle: { color: "#2a475e" } },
+      name: "Tag Count Bin",
+      nameLocation: "middle", nameGap: 30,
+    },
+    yAxis: [
+      {
+        type: "value",
+        name: "Median Review Count",
+        nameLocation: "middle", nameGap: 50,
+        axisLabel: { color: "#66c0f4", formatter: (v) => v >= 1000 ? (v / 1000).toFixed(0) + "K" : v },
+        splitLine: { lineStyle: { color: "#2a475e", opacity: 0.3 } },
+      },
+      {
+        type: "value",
+        name: "Median Positive Rate (%)",
+        nameLocation: "middle", nameGap: 55,
+        min: 60, max: 90,
+        axisLabel: { color: "#a4d007", formatter: (v) => v + "%" },
+        splitLine: { show: false },
+      },
+    ],
+    series: [
+      {
+        type: "bar",
+        yAxisIndex: 0,
+        data: reviewCounts.map((v, i) => ({
+          value: v,
+          itemStyle: {
+            color: barColors[i],
+            borderRadius: [4, 4, 0, 0],
+          },
+        })),
+        barWidth: "50%",
+        label: { show: false },
+        z: 1,
+      },
+      {
+        type: "line",
+        yAxisIndex: 1,
+        data: positiveRates,
+        lineStyle: { color: "#a4d007", width: 3, shadowBlur: 6, shadowColor: "rgba(164,208,7,0.4)" },
+        itemStyle: { color: "#a4d007", borderColor: "#1b2838", borderWidth: 2 },
+        symbol: "circle",
+        symbolSize: 12,
+        label: {
+          show: true,
+          color: "#a4d007",
+          fontSize: 11,
+          fontWeight: "bold",
+          distance: 6,
+          formatter: (p) => p.value.toFixed(1) + "%",
+        },
+        z: 10,
+      },
+    ],
+  }), { notMerge: true });
+
+  window.addEventListener("resize", () => chart.resize());
+}
+
 // ── Main Render ──────────────────────────────────────────────────
 function renderAll() {
   renderOverview();
@@ -611,6 +845,9 @@ function renderAll() {
   renderCooccurrenceGraph();
   renderCooccurrenceTable();
   initSampleFilter();
+  renderTfidfKeywords("high");
+  renderTagRichnessChart();
+  initTfidfToggle();
 }
 
 // ── Bootstrap ────────────────────────────────────────────────────

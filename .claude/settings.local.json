@@ -37,7 +37,15 @@
       "Bash(/opt/homebrew/bin/pdftotext \"/Users/situozhang/Documents/大数据处理技术/课件/课件-Chapter2.pdf\" -)",
       "Bash(/opt/homebrew/bin/pdftotext \"/Users/situozhang/Documents/大数据处理技术/课件/课件-Chapter3.pdf\" -)",
       "Bash(/opt/homebrew/bin/pdftotext \"/Users/situozhang/Documents/大数据处理技术/课件/课件-Chapter4.pdf\" -)",
-      "Bash(/opt/homebrew/bin/pdftotext \"/Users/situozhang/Documents/大数据处理技术/课件/课件-Chapter5.pdf\" -)"
+      "Bash(/opt/homebrew/bin/pdftotext \"/Users/situozhang/Documents/大数据处理技术/课件/课件-Chapter5.pdf\" -)",
+      "Bash(python3 *)",
+      "Bash(lsof -ti:8080)",
+      "Bash(lsof -ti:8000)",
+      "Bash(lsof -ti:3000)",
+      "Bash(lsof -ti:8900)",
+      "Bash(xargs kill)",
+      "Bash(tectonic --synctex --keep-logs --keep-intermediates --outdir reports/latex_build reports/latex/main.tex)",
+      "Bash(kill 60664)"
     ]
   }
 }
